@@ -1,0 +1,79 @@
+body {
+	background: #f3f3f3 none repeat scroll 0 0 !important;
+	color: #222;
+	font-size: 15px;
+}
+.top{
+  margin-top:0.2rem;	
+}
+.first {
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font: inherit;
+}
+
+.first span {
+	margin-left: 0.6rem;
+}
+
+.first strong {
+	margin-left: 0.5rem;
+	font-weight: normal;
+}
+
+.first i {
+	margin-left: 0.05rem;
+}
+
+.second {
+	padding-bottom: 0.15rem;
+	height: auto;
+}
+
+.span-img {
+	width: 0.6rem;
+	display: inline-block;
+	text-align: center;
+}
+
+.second .nav-icon {
+	width: 0.25rem;
+}
+
+.span-text {
+	width: 5.8rem;
+}
+.order-product {
+	margin-top: 0.2rem;
+}
+
+.order-product .product-img {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.order-product .product-quantity {
+	text-align: right;
+	margin-right: 0.3rem;
+}
+.order-msg-ul{
+	margin-top:0.2rem;
+	padding-left:0.3rem;
+}
+.order-msg-ul li i{
+  margin-left:0.2rem;
+  height:0.5rem;
+  line-height:0.5rem;
+}
+.order-price{
+  margin-top:0.2rem;
+  padding-left:0.3rem;
+  padding-bottom:0.2rem;
+}
+.order-price ul li {
+  height:0.4rem;
+  line-height:0.4rem;
+}
+.order-price ul li div{
+	margin-right:0.3rem;
+}

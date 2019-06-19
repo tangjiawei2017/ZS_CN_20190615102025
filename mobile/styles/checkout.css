@@ -1,0 +1,245 @@
+body {
+	background: #f3f3f3 none repeat scroll 0 0 !important;
+	color: #222;
+	font-size: 15px;
+}
+
+.first {
+	width: 100%;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font: inherit;
+}
+
+.first span {
+	margin-left: 0.6rem;
+}
+
+.first strong {
+	margin-left: 0.5rem;
+	font-weight: normal;
+}
+
+.first i {
+	margin-left: 0.05rem;
+}
+
+.sitem-tip-default {
+	background-color: #fff;
+	border: 1px solid #f23030;
+	border-radius: 2px;
+	color: #f23030;
+	font-size: 12px;
+	padding: 0 5px;
+	position: relative;
+	text-align: center;
+	top: -1px;
+}
+
+.second {
+	padding-bottom: 0.15rem;
+	height: auto;
+}
+
+.span-img {
+	width: 0.6rem;
+	display: inline-block;
+	text-align: center;
+}
+
+.second .nav-icon {
+	width: 0.25rem;
+}
+
+.span-text {
+	width: 5.8rem;
+}
+
+.order-product {
+	margin-top: 0.2rem;
+}
+
+.order-product .product-img {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.order-product .product-quantity {
+	text-align: right;
+	margin-right: 0.15rem;
+}
+
+.order-setting,.order-price {
+	margin-top: 0.2rem;
+}
+
+.order-setting ul,.order-price ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.order-setting ul li,.order-price ul li {
+	height: 0.80rem;
+	line-height: 0.80rem;
+}
+
+.order-setting ul li label,.order-price ul li label {
+	margin-left: 0.3rem;
+}
+
+.order-setting ul li .img-div,.order-price ul li .img-div {
+	width: 0.12rem;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
+}
+
+li.shiptype-li,li.shiptime-li {
+	height: 0.70rem;
+	line-height: 0.70rem;
+	padding-left: 0.2rem;
+}
+
+/**配送时间样式**/
+.sendTime_content {
+	width: 100%;
+	height: 100%;
+}
+
+ul.category {
+	background: #e4e2e3 none repeat scroll 0 0;
+	width: 2.4rem;
+	height: 100%;
+	float: left;
+}
+
+.category>li {
+	width: 2.4rem;
+	height: 0.9rem;
+	text-align: center;
+}
+
+.category li span {
+	margin: 0 auto;
+	height: 0.9rem;
+	line-height: 0.9rem;
+	display: block;
+	text-align: center;
+}
+
+.category>li.on span {
+	background: #fff none repeat scroll 0 0;
+	color: #009847;
+	text-align: center;
+}
+
+ul.sendTime {
+	width: 4.0rem;
+	float: left;
+	background: #fff none repeat scroll 0 0 !important;
+}
+
+ul.sendTime li {
+	width: 100%;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	cursor: pointer;
+}
+
+ul.sendTime li span {
+	padding-left: 0.3rem;
+}
+
+ul.sendTime li img {
+	width: 0.3rem;
+	margin-right: 0.3rem;
+}
+
+/** 弹窗样式**/
+.shiptime-mask {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: rgba(0, 0, 0, .7);
+	z-index: 99;
+	opacity: 0;
+}
+
+.shiptime-dailog {
+	position: fixed;
+	max-width: 640px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background-color: #fff;
+	z-index: 1000;
+	bottom: -100%;
+	-moz-transition: bottom 0.5s;
+	-webkit-transition: bottom 0.5s;
+	-o-transition: bottom 0.5s;
+	transition: bottom 0.5s;
+}
+
+.red {
+	color: #f00;
+}
+
+li.order-product-price,li.order-send-price,li.order-promotion-price {
+	height: 0.45rem !important;
+	line-height: 0.45rem !important;
+}
+
+.order-price {
+	margin-bottom: 1.2rem;
+}
+
+.cart-calculate {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	max-width: 640px;
+	margin: 0 auto;
+	height: 0.9rem;
+	text-align: center;
+	line-height: 0.9rem;
+	z-index: 20;
+}
+
+.go-balance {
+	width: 100%;
+	height: 0.9rem;
+}
+
+.total-price {
+	text-align: left;
+	padding-left: 0.4rem;
+}
+
+.total {
+	margin-right: 0.2rem;
+}
+
+.total-price {
+	text-align: right;
+	padding-right: 0.3rem;
+}
+.beizhu div{
+	width: 100%;
+    height: 1.0rem;
+    margin: 0px;
+    padding: 0px;
+}
+.textarea-input{
+    padding-left: 0.1rem;
+    overflow: hidden;
+    border: none;
+    outline: none;
+}
+.save-beizhu{
+	width:1.2rem;
+	height: 1.0rem;
+}

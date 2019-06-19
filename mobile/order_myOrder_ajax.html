@@ -1,0 +1,85 @@
+<c:choose>
+	<c:when test="${orderVOList==null || fn:length(orderVOList)==0}">
+		<div class='fs30 fc-999 no-order'>您还没有相关订单</div>
+	</c:when>
+	<c:otherwise>
+		<c:forEach items="${orderVOList}" var="orderVO">
+			<div class="order-box bg-color-white">
+				<input type="hidden" name="orderId" value="${orderVO.id}" />
+				<c:choose>
+					<c:when test="${fn:length(orderVO.orderItemsVO)==1}">
+						<div class="flex-box">
+							<c:forEach items="${orderVO.orderItemsVO}" var="item">
+								<img class="product-img" src="${item.imgpath}">
+								<div class="flex-box-grow1 order-product-msg">
+									<div class="fs26 flex-box-grow1">${item.proName}</div>
+									<c:if
+										test="${item.spec0!=null || item.spec1!=null || item.spec2!=null}">
+										<div class="fs24 fc-9 flex-box-grow1">
+											规格:
+											<c:if test="${item.spec0!=null}">${item.spec0 }&nbsp;&nbsp;</c:if>
+											<c:if test="${item.spec1!=null}">${item.spec1 }&nbsp;&nbsp;</c:if>
+											<c:if test="${item.spec2!=null}">${item.spec2 }</c:if>
+										</div>
+									</c:if>
+								</div>
+							</c:forEach>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="flex-box order-product-more">
+							<c:if test="${fn:length(orderVO.orderItemsVO)<=3}">
+								<c:forEach items="${orderVO.orderItemsVO}" var="item">
+									<div>
+										<img src="${item.imgpath}" class="product-img" />
+									</div>
+								</c:forEach>
+							</c:if>
+							<c:if test="${fn:length(orderVO.orderItemsVO)>3}">
+								<div>
+									<img src="${orderVO.orderItemsVO[0].imgpath}"
+										class="product-img" /> <img
+										src="${orderVO.orderItemsVO[1].imgpath}" class="product-img" />
+									<img src="${orderVO.orderItemsVO[2].imgpath}"
+										class="product-img" />
+								</div>
+							</c:if>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<c:if test="${orderVO.status==1}">
+					<div class="fs26 order-total">
+						共${fn:length(orderVO.orderItemsVO)}件&nbsp;&nbsp;待付款: <strong
+							class="fs28">￥<i>${orderVO.total}</i></strong>
+					</div>
+				</c:if>
+				<c:if test="${orderVO.status!=1}">
+					<div class="fs26 order-total">
+						共1件&nbsp;&nbsp;实付款: <strong class="fs28">￥<i>${orderVO.total}</i></strong>
+					</div>
+				</c:if>
+				<div class="fs24 order-oper-botton">
+					<c:if test="${orderVO.status==1}">
+						<button class="fc-red" data-button="paybtn">去支付</button>
+						<button data-button="cancelbtn">取消订单</button>
+					</c:if>
+					<c:if test="${orderVO.status==2 || orderVO.status==3}">
+					    <button class="fc-red" data-button="confirmbtn">确认收货</button>
+						<button data-button="logisticsbtn">查看物流</button>
+					</c:if>  
+					<c:if test="${orderVO.status==5}">
+						<c:choose>
+							<c:when
+								test="${orderVO.isreview==1  && orderVO.isServiceReview==1}">
+							</c:when>
+							<c:otherwise>
+								<button data-button="evaluatebtn">评价晒单</button>
+							</c:otherwise>
+						</c:choose>
+						<button class="fc-red" data-button="payagainbtn">再次购买</button>
+					</c:if>
+				</div>
+			</div>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>

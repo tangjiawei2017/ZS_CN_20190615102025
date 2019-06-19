@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>电话下单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<style>
+.calldiv {
+	width: 100%;
+	margin-top: 0.2rem;
+	height: 3rem;
+	text-align: center;
+}
+
+.calldiv div {
+	width: 100%;
+	text-align: center;
+	padding-top: 0.6rem;
+	height: 1rem;
+}
+
+.calldiv .callBtn {
+    display:block;
+	width: 3.6rem;
+	height: 0.6rem;
+	border-radius: 2px;
+	margin:0 auto;
+	line-height:0.6rem;
+}
+</style>
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+$(function(){
+  $.ajax({
+	  url:"/site/getSite.action",
+	  type:"post",
+	  dataType:"json",
+	  success:function(result){
+         if(result.code==200){
+			  $(".calldiv div span").html(result.data.phone);
+			  $(".calldiv a").attr("href","tel:"+result.data.phone);
+		 }
+	  }
+  });
+});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc"">
+			<img src="/images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2 fc-black">电话下单</span>
+		</div>
+		<div class="content">
+			<div class="calldiv bg-color-white">
+				<div class="fs28">请拨打 <span></span> 号码进行电话下单</div>
+				<a href="javascript:void(0)" class="fc-white greenBtn fs26 callBtn">点击拨打</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

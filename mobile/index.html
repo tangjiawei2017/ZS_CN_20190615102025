@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/index.css">
+<link rel="stylesheet" type="text/css" href="styles/swiper.min.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/swiper.min.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/index.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<!--图片轮播--->
+		<div class="swiper-container" style="background-color:#fff">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide">
+					<img src="images/a.jpg" alt="" />
+				</div>
+				<div class="swiper-slide">
+					<img src="images/b.jpg" alt="" />
+				</div>
+				<div class="swiper-slide">
+					<img src="images/c.jpg" alt="" />
+				</div>
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+		<!--快速导航-->
+		<ul class="quick-nav flex-box bg-color-white">
+			<li class="flex-box-grow1"><a href="product_list.html"><img
+					src="images/category_nav.png" /><span
+					class="fs22 fc-666">产品分类</span></a></li>
+			<li class="flex-box-grow1"><a href="mycart.html"><img
+					src="images/cart_nav.png" /><span class="fs22 fc-666">购物车</span></a></li>
+			<li class="flex-box-grow1"><a href="members_index.html"><img
+					src="images/members_nav.png" /><span
+					class="fs22 fc-666">会员中心</span></a></li>
+			<li class="flex-box-grow1"><a href="aboutus.html"><img
+					src="images/aboutme.png" /><span
+					class="fs22 fc-666">关于我们</span></a></li>
+			<li class="flex-box-grow1"><a href="form.html"><img
+						src="images/aboutme.png" /><span
+						class="fs22 fc-666">自定义表单</span></a></li>
+		</ul>
+		<div class="bottom-nav-blank bg-color-f3"></div>
+		<div class="bottom-nav bg-color-white border-t">
+			<ul class="flex-box">
+				<li class="flex-box-grow1"><a href="index.html"><img
+						src="images/index_cursor.png" /><span class="fs20 fc-999">首页</span></a></li>
+				<li class="flex-box-grow1"><a href="product_list.html"><img
+						src="images/category.png" /><span class="fs20 fc-999">分类</span></a></li>
+				<li class="flex-box-grow1"><a href="mycart.html"><div
+							style="display:none" class="cart">
+							<img src="images/cart.png" /><i class="proCon"
+								id="amount">0</i>
+						</div> <img src="images/cart.png" /> <span class="fs20 fc-999">购物车</span></a></li>
+				<li class="flex-box-grow1"><a href="members_index.html"><img
+						src="images/members.png" /><span class="fs20 fc-999">会员中心</span></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

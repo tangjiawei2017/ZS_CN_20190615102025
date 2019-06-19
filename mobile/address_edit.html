@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>地址编辑</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/address.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/editAddress.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc"">
+			<img src="/images/back.png" onclick="history.back(-1)" /><span
+				class="fs28 flex-box-grow2">
+				新增收货地址
+			</span>
+		</div>
+		<form action="" method="post" id="addressForm" name="addressForm">
+			<input type="hidden" name="id"  value=""/>
+			<input type="hidden" name="returnUrl"  value=""/>
+ 			<input type="hidden" name="province" value="" /> 
+			<input type="hidden" name="city" value="" />
+			<input type="hidden" name="county" value="" />
+			<input type="hidden" name="isDefault" value="">
+			<ul>
+				<li class="editaddr flex-box bg-color-white"><strong
+					class="fs26">收货人:</strong><input type="text" name="receiver"
+					class="fs24"
+					value="" /></li>
+				<li class="editaddr flex-box border-t bg-color-white"><strong
+					class="fs26">手机号码:</strong><input type="text" name="phone"
+					class="fs24"
+					value="" /></li>
+				<li class="editaddr flex-box border-t bg-color-white"><strong
+					class="fs26">所在地区:</strong>
+					<div class="appaddress flex-box flex-box-grow2">
+						<span class="fs24 flex-box-grow2">
+								<span class="province"></span>
+								<span class="city"></span>
+								<span class="county"></span>
+						</span>
+						<img class="more-icon" src="/images/more.png" />
+					</div></li>
+				<li class="editaddr flex-box border-t bg-color-white"><strong
+					class="fs26">详细地址:</strong><input type="text" name="area" class="fs24" value="" /></li>
+				<li class="high border-t border-b-cc bg-color-white">
+					<div class="df_addr_span fc-666">
+						<div class="fs22 df_addr_span_1">
+							<strong class="fs26">设为默认地址</strong>
+						</div>
+						<div class="fs22 df_addr_span_2">注：每次下单时默认会使用该地址</div>
+					</div>
+					<div class="df_addr_img addr-default-img">
+							<img src="/images/switch.png" data-index="0" />
+					</div>
+				</li>
+			</ul>
+			<div class="greenBtn addr-save-btn fs26 fc-white">保存</div>
+		</form>
+	</div>
+</body>
+</html>

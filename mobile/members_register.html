@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员注册</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/register.js" charset="utf-8"></script>
+</head>
+<body style="background: #fff">
+	<div class="container">
+		<div class="header flex-box bg-color-f3">
+			<img src="images/back.png" onclick="window.location.href='/members_login.html'" /><span
+				class="fs28 flex-box-grow2">用户注册</span>
+		</div>
+		<div class="content">
+			<form id="form" method="post" class="form"
+				action="">
+				<ul>
+					<li class="border-b flex-box"><input type="text"
+						name="account" placeholder="用户名" class="fs24 fc-999"
+						value="" /></li>
+					<li class="border-b flex-box"><input type="text"
+						name="cellphone" placeholder="手机号" class="fs24 fc-999"
+						value="" /></li>
+					<li class="border-b flex-box"><input type="password"
+						name="password" placeholder="密码" class="fs24 fc-999" /></li>
+					<li class="border-b flex-box"><input type="password"
+						name="pwd2" placeholder="再次确认密码" class="fs24 fc-999" /></li>
+					<li class="border-b flex-box"><input type="text"
+						name="verifycode" placeholder="验证码" class="fs24 fc-999" /><img
+						style="width:80px;height:30px;" id="verifycode"
+						src="/servlet/verifyCode" /></li>
+				</ul>
+				<p class="p">
+					<input type="button"
+						class="greenBtn fs26 fc-white border-radius-60 register-save-btn"
+						value="注册" />
+				</p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

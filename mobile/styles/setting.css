@@ -1,0 +1,38 @@
+body{
+	font-size:15px;
+}
+ul  .li{
+	 width:100%;
+	 height:0.8rem;
+     font: inherit;
+}
+ul .li strong{
+  margin-left:0.2rem;
+}
+ul  .li .login-div{
+	text-align:right;
+}
+ul .li span{
+	 text-align:right;
+}
+ul .li .login-icon{
+	  width:0.71rem;
+	  height:0.71rem;
+	  border-radius:50%;
+}
+strong{
+	font: inherit;
+	font-weigth:normal;
+}
+.login-out:before{
+	content: " ";
+    display: block;
+	width:100%;
+	height:0.3rem;
+	background: #f3f3f3 none repeat scroll 0 0;
+}
+.login-out{
+  height:1.1rem;
+  line-height:0.8rem;
+  text-align:center;  
+}

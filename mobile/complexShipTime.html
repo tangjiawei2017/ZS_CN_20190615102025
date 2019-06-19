@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+   $(function(){
+	var date = new Date();
+	var array1 = [];
+	var array2 = [];
+	var array3 = [];
+	var time1 = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+	var time2 = new Date(date.getTime() + 24 * 60 * 60 * 1000 * 2);
+	var time3 = new Date(date.getTime() + 24 * 60 * 60 * 1000 * 3);
+	array1.push("今天(" + getFormatWeekDay(date) + ")");
+	array1.push("明天(" + getFormatWeekDay(time1) + ")");
+	array1.push("后天(" + getFormatWeekDay(time2) + ")");
+	array1.push(getFormatWeekDay(time3));
+
+	array2.push(getFormatDate(date) + "(" + getFormatWeekDay(date) + ")");
+	array2.push(getFormatDate(time1) + "(" + getFormatWeekDay(time1) + ")");
+	array2.push(getFormatDate(time2) + "(" + getFormatWeekDay(time2) + ")");
+	array2.push(getFormatDate(time3) + "(" + getFormatWeekDay(time3) + ")");
+	var tempArray=[];
+	var firstArray=[];
+	<c:if test="${shipTimeVO.sendNow==1}">firstArray.push("立即送出");</c:if>
+	<c:if test="${shipTimeVO.time0!=null}">
+		tempArray.push('${shipTimeVO.time0}'); 
+		var time0=parseInt('${shipTimeVO.time0}'.substring(0,'${shipTimeVO.time0}'.indexOf(":")));
+		if(time0>date.getHours()){
+			firstArray.push('${shipTimeVO.time0}');
+		}
+	</c:if>
+	<c:if test="${shipTimeVO.time1!=null}">
+		tempArray.push('${shipTimeVO.time1}');
+		var time1=parseInt('${shipTimeVO.time1}'.substring(0,'${shipTimeVO.time1}'.indexOf(":")));
+		if(time1>date.getHours()){
+			firstArray.push('${shipTimeVO.time1}');
+		}
+	</c:if>
+	<c:if test="${shipTimeVO.time2!=null}">
+		tempArray.push('${shipTimeVO.time2}');
+		var time2=parseInt('${shipTimeVO.time2}'.substring(0,'${shipTimeVO.time2}'.indexOf(":")));
+		if(time2>date.getHours()){
+			firstArray.push('${shipTimeVO.time2}');
+		}
+	</c:if>
+	<c:if test="${shipTimeVO.time3!=null}">
+	    tempArray.push('${shipTimeVO.time3}');
+		var time3=parseInt('${shipTimeVO.time3}'.substring(0,'${shipTimeVO.time3}'.indexOf(":")));
+		if(time3>date.getHours()){
+			firstArray.push('${shipTimeVO.time3}');
+		}
+	</c:if>
+		<c:if test="${shipTimeVO.time4!=null}">
+	    tempArray.push('${shipTimeVO.time4}');
+		var time4=parseInt('${shipTimeVO.time4}'.substring(0,'${shipTimeVO.time4}'.indexOf(":")));
+		if(time4>date.getHours()){
+			firstArray.push('${shipTimeVO.time4}');
+		}
+	</c:if>
+	array3.push(firstArray);
+	array3.push(tempArray);
+	array3.push(tempArray);
+	array3.push(tempArray);
+	
+	$("#category").html('');
+	$("#category").siblings().remove();
+	
+	<c:if test="${shipTimeVO.canReserveDay==0}">
+		$("#category").html('<li class="on"><span title="'+array2[0]+'">' + array1[0]+ '</span></li>');
+		$ul='<ul class="fs26 sendTime">';
+		for(var j=0;j<firstArray.length;j++){
+   		   if(j==0){
+   			   $ul=$ul+'<li class="flex-box"><span class="fs26 flex-box-grow2">'+firstArray[0]+'</span></li>';
+   		   }else{
+   			   $ul=$ul+'<li class="flex-box"><span class="fs26 flex-box-grow2">'+firstArray[j]+'</span></li>';
+   		   }
+	    }
+	    $ul+="</ul>";
+	    $("#category").parent().append($ul);
+	</c:if>
+	<c:if test="${shipTimeVO.canReserveDay==1 && shipTimeVO.reserveDay>0}">
+	    for(var i=0;i<=parseInt('${shipTimeVO.reserveDay}');i++){
+	    	if(i==0){
+	    		$("#category").append('<li><span title="'+array2[0]+'">'+array1[0]+'</span></li>');
+	    		$ul='<ul class="fs26 sendTime" style="display:none;">';
+	    		for(var j=0;j<firstArray.length;j++){
+	    		   if(j==0){
+	    			   $ul=$ul+'<li class="flex-box"><span class="fs26 flex-box-grow2">'+firstArray[0]+'</span></li>';
+	    		   }else{
+	    			   $ul=$ul+'<li class="flex-box"><span class="fs26 flex-box-grow2">'+firstArray[j]+'</span></li>';
+	    		   }
+	    		}
+	    		$ul+="</ul>";
+	    		$("#category").parent().append($ul);
+	    	}else{
+	    		$("#category").append('<li><span title="'+array2[i]+'">'+array1[i]+'</span></li>');
+	    		$ul='<ul class="fs26 sendTime" style="display:none;">';
+	    		for(var j=0;j<array3[i].length;j++){
+	    			$ul=$ul+'<li class="flex-box"><span class="fs26 flex-box-grow2">'+array3[i][j]+'</span></li>';
+	    		}
+	    		$ul+="</ul>";
+	    		$("#category").parent().append($ul);
+	    	}
+	    }
+    </c:if>
+    
+     $(".sendTime li").click(function(){
+    	 var self=$(this);
+    	 var text='';
+    	 var i=0;
+    	 $(".sendTime").each(function(index){
+    		if($(this).is(":visible")){
+    			i=index;
+    			return;
+    		}
+    	 });
+    	 text=$("#category li").eq(i).children("span").attr("title");
+    	 text=text+" "+self.children("span").html();
+    	 $("input[name='shipTime']").val(text);
+    	 $(".order-shiptime div.order-shiptime-content").html(text).removeClass("fc-999");
+    	 $(".shiptime-mask").remove();
+    	 $(".shiptime-dailog").remove();
+     });
+     //处理回选
+     var array=$.trim($(".order-shiptime div").html()).split(" ");
+     if(array.length==1){
+    	 $("#category li:eq(0)").addClass("on");
+    	 $("ul.sendTime:eq(0)").show().siblings(".sendTime").hide();
+    	 $("ul.sendTime:eq(0) li").each(function(){
+    		 if($(this).children("span").html()==array[0]){
+    			 $(this).append('<img src="/images/ok.png">');
+    			 $(this).children("span").addClass("red");
+    		 }
+    	 });
+     }else{
+    	$("#category li").each(function(index){
+    		if($(this).children("span").attr("title")==array[0]){
+    			$(this).addClass("on").siblings().removeClass("on");
+    			i=index;
+    			$("ul.sendTime").eq(index).show();
+    			$("ul.sendTime").eq(index).children("li").each(function(){
+    				 if($(this).children("span").html()==array[1]){
+    	    			 $(this).append('<img src="/images/ok.png">');
+    	    			 $(this).children("span").addClass("red");
+    	    		 }
+    			});
+    			return;
+    		}   
+    	});
+     }
+     
+   });
+	//获取日期格式化
+	function getFormatDate(date) {
+		var seperator = "-";
+		var month = date.getMonth() + 1;
+		var strDate = date.getDate();
+		if (month >= 1 && month <= 9) {
+			month = "0" + month;
+		}
+		if (strDate >= 0 && strDate <= 9) {
+			strDate = "0" + strDate;
+		}
+		var currentdate = date.getFullYear() + seperator + month + seperator
+				+ strDate;
+		return currentdate;
+	}
+	//获取周几格式化
+	function getFormatWeekDay(date) {
+		var str = "周";
+		switch (date.getDay()) {
+		case 0:
+			str += "日";
+			break;
+		case 1:
+			str += "一";
+			break;
+		case 2:
+			str += "二";
+			break;
+		case 3:
+			str += "三";
+			break;
+		case 4:
+			str += "四";
+			break;
+		case 5:
+			str += "五";
+			break;
+		case 6:
+			str += "六";
+			break;
+		}
+		return str;
+	}
+</script>
+</head>
+<body>
+	<div class="sendTime_content">
+		<ul id="category" class="category fs24">
+		</ul>
+	</div>
+</body>
+</html>

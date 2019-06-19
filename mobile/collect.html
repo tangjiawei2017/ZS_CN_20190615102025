@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商品收藏</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/collect.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+	$(function(){
+		$.ajax({
+			url : "/customer/collect.action",
+			type : "post",
+			dataType:"json",
+			success : function(result) {
+				if(result.code==200){
+				   var data= result.data;
+				   if(data.length>0){
+					    $(".no-product-collect").hide();
+						for(var i=0;i<data.length;i++){
+							var $li='<li><a href="/product_detail.html?id='+data[i].id
+									+'"><img src="'+data[i].image+'" /></a>'
+									+'<div class="product-collect-deatil"><ul><li class="fs26">'
+									+data[0].name+'</li><li><strong class="fs24 fc-red"></span>￥<i>'
+									+data[0].price+'</i> </strong></li><li>';
+							if(data[0].sale==1){
+								$li = $li +'<button class="greenBtn fs28 fc-white addcart-btn" '
+									+ 'onclick="addCart('+data[0].id+')">加入购物车</button>';
+							}else if(data[0].sale==0){
+								$li = $li +'<button class="fs28 fc-white saleoff-btn">已下架</button>';
+							}
+							$li = $li +'&nbsp;&nbsp;&nbsp;<button class="remove-btn fs28 fc-black" onclick="removeCollect('+data[i].id+')">移除</button></li>';
+							$("ul.product-collect-list").append($li);
+						}
+				    }
+				}
+			}
+		});   
+
+	});
+	//添加到购物车
+	function addCart(pId) {
+       $.ajax({
+		    url : "/cart/collect2cart.action",
+			type : "post",
+			data : {
+				"pid" : pId
+			},
+			dataType:"json",
+			success : function(data) {
+				if(data.result=="success"){
+					layer.open({
+						content : '加入购物车成功!',
+						skin : 'msg',
+						time : 2
+					});
+				}else if(data.result=="fail" && data.code==1){
+					window.location.href="/product_detail.html?id="+pId;
+				}
+			}
+	   })
+	}
+	//移除收藏
+	function removeCollect(id) {
+		$.ajax({
+			url : "/customer/removeCollectProduct.action",
+			type : "post",
+			data : {
+				"pid" : id
+			},
+			success : function(data) {
+				//重新加载
+				location.reload();
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="/images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">商品收藏</span>
+		</div>
+		<div class="product-collect-div">
+			<div class="no-product-collect">
+				<img src="/images/nocollect.png">
+				<div class="fs26 fc-999">您还没有收藏商品哦~</div>
+			</div>
+			<ul class="fs24 ul product-collect-list">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

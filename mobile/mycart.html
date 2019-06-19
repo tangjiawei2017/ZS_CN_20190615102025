@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>购物车</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/mycart.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/mycart.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header bg-color-white fs28 border-b-cc">
+			<span>购物车</span>
+		</div>
+		<div class="cart_content">
+			<div
+				class="cart_empty flex-box bg-color-white flex-box-justify-content">
+				<img src="images/cart_empty.png"> <span
+					class="fs24 cbf">购物车空空如也,赶紧去逛逛吧~</span>
+			</div> 
+			<ul class="cart_product_ul"></ul>
+		</div>
+		<div class="cart-calculate flex-box bg-color-white" style="display:none">
+				<div class="checkAll">
+					<input type="checkbox" name="allselect">&nbsp;全选
+				</div>
+				<div class="flex-box-grow2 total-price">
+					<span>合计:</span><strong class="fs24 fc-red">￥<i></i></strong>
+				</div>
+				<div class="flex-box-grow2">
+					<button class="go-balance greenBtn fs28 fc-white">
+						去结算(<span class="fs24"></span>)
+					</button>
+				</div>
+		</div>
+		<div class="bottom-nav-blank bg-color-f3"></div>
+		<div class="bottom-nav bg-color-white border-t">
+			<ul class="flex-box">
+				<li class="flex-box-grow1"><a href="index.html"><img
+						src="images/index.png" /><span class="fs20 fc-999">首页</span></a></li>
+				<li class="flex-box-grow1"><a href="product_list.html"><img
+						src="images/category.png" /><span class="fs20 fc-999">分类</span></a></li>
+				<li class="flex-box-grow1"><a href="mycart.html"><div
+							style="display: none" class="cart">
+							<img src="images/cart_cursor.png" /><i class="proCon"
+								id="amount">0</i>
+						</div> <img src="images/cart_cursor.png" /> <span class="fs20 fc-999">购物车</span></a></li>
+				<li class="flex-box-grow1"><a href="members_index.html"><img
+						src="images/members.png" /><span class="fs20 fc-999">会员中心</span></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

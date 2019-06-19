@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>订单详情</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/orderDetail.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script>
+	function redirect(pid){
+		if(typeof pid=="undefined"){
+			   layer.open({
+					content : "商品已下架!" ,
+					skin : 'msg',
+					time : 2
+			     });
+		}else{
+			window.location.href="/product_detail/&id="+pid+".html"; 
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="${ctx}images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">订单详情</span>
+		</div>
+		<div class="content">
+			<div class="border-b bg-color-white top">
+				<div class="first flex-box">
+					<span class="fs26">${order.consigneeName}</span><strong
+						class="fs26">${order.consigneeMobile}</strong>
+				</div>
+				<div class="second fs24 fc-b6b6 border-b flex-box">
+					<div class="span-img">
+						<img class="nav-icon" src="${ctx}images/addr.png" />
+					</div>
+					<div class="span-text flex-box-grow2 fc-999">地址:
+						${order.consigneeAddress}</div>
+				</div>
+			</div>
+			<div class="order-product bg-color-white border-b">
+				<c:forEach items="${order.orderItemsVO}" var="item">
+					<div class="flex-box" onclick="redirect(${item.proId});">
+						<img class="product-img" src="${item.imgpath}">
+						<div
+							class="flex-box-grow1 flex-box-direction-column cart-product-msg">
+							<div class="fs24 flex-box-grow1">${item.proName}</div>
+							<c:if
+								test="${item.spec0!=null || item.spec1!=null || item.spec2!=null }">
+								<div class="fs22 fc-9 flex-box-grow1">
+									规格:
+									<c:if test="${item.spec0!=null}">${item.spec0 }&nbsp;&nbsp;&nbsp;</c:if>
+									<c:if test="${item.spec1!=null }">${item.spec1 }&nbsp;&nbsp;&nbsp;</c:if>
+									<c:if test="${item.spec2!=null }">${item.spec2 }</c:if>
+								</div>
+							</c:if>
+							<div class="flex-box flex-box-grow1 pmsg">
+								<strong class="fs24 fc-red">￥<i><fmt:formatNumber
+											value="${item.price}" type="currency" pattern="0.00" /></i></strong>
+								<div class="fs24 flex-box-grow1 product-quantity">数量:${item.quantity}件</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<ul class="order-msg-ul bg-color-white">
+				<li><span class="fs26 fc-999">订单编号:</span><i
+					class="fs26 fc-999">${order.number}</i></li>
+				<li><span class="fs26 fc-999">下单时间:</span><i
+					class="fs26 fc-999"><fmt:formatDate value="${order.cTime}"
+							pattern="yyyy-MM-dd HH:mm:ss" /></i></li>
+				<li><span class="fs26 fc-999">支付方式:</span><i
+					class="fs26 fc-999">${order.paymethodname}</i></li>
+				<li><span class="fs26 fc-999">配送方式:</span><i
+					class="fs26 fc-999">${order.shipTypeName}</i></li>
+				<li><span class="fs26 fc-999">送货时间:</span><i
+					class="fs26 fc-999">${order.shipTime}</i></li>
+			</ul>
+			<div class="order-price bg-color-white border-b">
+				<ul>
+					<li class="flex-box order-product-price"><label
+						class="fs26 flex-box-grow2 fc-999">商品金额</label>
+						<div class="fs26">
+							<strong id="price" class="fs24 fc-999">￥<i><fmt:formatNumber
+										value="${order.ptotal}" type="currency" pattern="0.00" /></i></strong>
+						</div></li>
+					<li class="flex-box order-send-price"><label
+						class="fs26 flex-box-grow2 fc-999">+运费</label>
+						<div class="fs26">
+							<strong id="sendprice" class="fs24 fc-999">￥<i><fmt:formatNumber
+										value="${order.freight}" type="currency" pattern="0.00" /></i></strong>
+						</div></li>
+					<li class="flex-box order-promotion-price"><label
+						class="fs26 flex-box-grow2 fc-999">-优惠</label>
+						<div class="fs26">
+							<strong id="proprice" class="fs24 fc-999">￥<i><fmt:formatNumber
+										value="${order.payScost}" type="currency" pattern="0.00" /></i></strong>
+						</div></li>
+					<li class="flex-box"><span class="flex-box-grow2"></span>
+						<div>
+							<c:choose>
+								<c:when
+									test="${order.paytypecode==0 && order.status!=1 && order.status!=4 }">
+					                                           实付款:
+					            </c:when>
+								<c:when test="${order.paytypecode==1 && order.status==5}">
+					                                          实付款:
+					            </c:when>
+								<c:otherwise>
+					                                          应付款:
+					            </c:otherwise>
+							</c:choose>
+							<strong id="sendprice" class="fs24 fc-red">￥<i><fmt:formatNumber
+										value="${order.total}" type="currency" pattern="0.00" /></i></strong>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商品详情</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="styles/common.min.css">
+<link rel="stylesheet" type="text/css" href="styles/product.css">
+<script type="text/javascript" src="js/jquery-2.1.4.js" charset="utf-8"></script>
+<script type='text/javascript' src='js/swiper.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/product_detail.js" charset="utf-8"></script>
+<script>
+	$(function(){
+		ProductDetail.initView();
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<!--图片轮播--->
+			<div class="swiper-container" style="background-color:#fff">
+				<a href="javascript:" class="back"><img src="images/pback.png" onclick="ProductDetail.back();"></i></a>
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					
+				</div>
+				<!-- If we need pagination -->
+				<div class="swiper-pagination" slot="pagination"></div>
+			</div>
+			<input type="hidden" name="proItemId" value=""/>
+			<div class="product-name-div bg-color-white">
+				<span class="fs26 name" ></span> <strong id="price"
+					class="fs24 fc-red">￥<i></i> 元</strong>
+			</div>
+			<div class="product-promo-div bg-color-white border-t flex-box" style="display:none">
+					<div class="product-label fs26 fc-999">促销</div>
+					<div class="product-promo flex-box-grow2">
+							<div class="fs26">
+							</div>
+					</div>
+			</div>
+			<ul class="product-spec-ul bg-color-white border-t border-b">
+				<li class="flex-box product-spec-choose-li" style="display:none">
+					<span class="product-label fs26 fc-999">已选</span> <span
+					class="product-spec-choose fs26 fc-red"></span>
+				</li>
+				<li class="flex-box"><span class="fs26 product-buy-label">购买数量</span>
+					<div class="product-buy-count flex-box">
+						<a class="minus border-f8" href="javascript:void(0)"> <em
+							class="prev"></em>
+						</a> <input name="count" class="icount" value="1" type="text">
+						<a class="plus border-f8" href="javascript:void(0)"> <em
+							class="next"></em>
+						</a> <i class="product-buy-unit fc-black fs26"></i>
+						<span class="product-stock fc-red fs26">库存:&nbsp;<i></i></span>
+					</div></li>
+			</ul>
+			<div class="product-detail-desc">
+				<div class="title fs28">详情介绍</div>
+				<div class="bg-color-white">
+					<ul class="pro_card_option flex-box border-b">
+						<li class="box-grow2  flex-box flex-box-justify-content"><span
+							class="fs26 currentCard" data-class="product_desc">商品描述</span></li>
+						<li class="box-grow2  flex-box flex-box-justify-content"><span
+							class="fs26" data-class="product_mark">商品评价</span></li>
+					</ul>
+					<div class="pro_card_box" style="padding-bottom:1rem;">
+						<div class="product_desc"></div>
+						<div class="product_mark" style="display:none">
+						<div class="review-count border-b">
+							<div class="fc-999 count">评价(<i>0</i>)</div>
+							<div class="good-reiview">好评度&nbsp;&nbsp;<span class="fc-red"><i>0</i>%</span></div>
+						</div>
+						<ul class="reviewList">
+						</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-buy-btn bg-color-white">
+			<ul class="flex-box canbuyBtn">
+				<li class="flex-box-grow1 addCollect-btn"><a href="javascript:void(0)"> <img
+						src="images/collection_buy.png" /> <span
+						class="fc-999 fs26">加入收藏</span>
+				</a></li>
+				<li class="flex-box-grow1 myCart-btn"><a href="/mycart.html"> <div class="cart"><img
+						src="images/cart.png" /><i class="proCon" id="amount">0</i></div> <span class="fc-999 fs26">购物车</span>
+				</a></li>
+				<li class="flex-box-grow4 buy-btn-li"><button
+						class="buy-btn greenBtn fs28 fc-white addCart-btn">加入购物车</button></li>
+			</ul>
+			<ul class="flex-box nbuyBtn" style="display:none">
+				<li class="flex-box-grow1 buy-btn-li"><button
+						class="buy-btn grayBtn fs28 fc-white">到货通知</button></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

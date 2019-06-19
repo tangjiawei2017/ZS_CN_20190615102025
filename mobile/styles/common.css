@@ -1,0 +1,417 @@
+body {
+	background: #f3f3f3 none repeat scroll 0 0;
+	font-family: "Helvetica", "Microsoft Yahei";
+	color: black;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+	font-size: 15px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 6.4rem;
+}
+
+.content {
+	width: 100%;
+	padding-top: 1.0rem;
+}
+
+/** 背景颜色 **/
+.bg-color-f3 {
+	background: #f3f3f3 none repeat scroll 0 0;
+}
+
+.bg-color-white {
+	background: #fff none repeat scroll 0 0;
+}
+
+.bg-color-green {
+	background: #00b38a none repeat scroll 0 0;
+}
+/**字体颜色 **/
+.fc-white {
+	color: #fff;
+}
+
+.fc-black {
+	color: #000;
+}
+
+.fc-666 {
+	color: #666;
+}
+
+.fc-b6b6 {
+	color: #b6b6b6;
+}
+
+.fc-ccc {
+	color: #ccc;
+}
+
+.fc-999 {
+	color: #999;
+}
+
+.fc-red {
+	color: #f00;
+}
+.fc-green{
+    color:#80ba45
+}
+
+/**字体大小设置**/
+.fs34 {
+	font-size: 0.34rem;
+}
+
+.fs32 {
+	font-size: 0.32rem;
+}
+
+.fs30 {
+	font-size: 0.30rem;
+}
+
+.fs28 {
+	font-size: 0.28rem;
+}
+
+.fs26 {
+	font-size: 0.26rem;
+}
+
+.fs24 {
+	font-size: 0.24rem;
+}
+
+.fs22 {
+	font-size: 0.22rem;
+}
+
+.fs20 {
+	font-size: 0.2rem;
+}
+
+.fs18 {
+	font-size: 0.18rem;
+}
+
+/**弹性盒模型**/
+.flex-box {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+}
+
+.flex-box-direction-column {
+	flex-direction: column;
+}
+
+.flex-box-justify-content {
+	justify-content: center;
+}
+
+.flex-box-justify-content-end {
+	justify-content: flex-end;
+}
+
+.flex-box-justify-content-start {
+	justify-content: flex-start;
+}
+
+.flex-box-start {
+	align-items: flex-start;
+}
+
+.flex-box-center {
+	align-items: center;
+}
+
+.flex-box-end {
+	align-items: flex-end;
+}
+
+.flex-box-grow1 {
+	flex-grow: 1;
+}
+
+.flex-box-grow2 {
+	flex-grow: 2;
+}
+
+.flex-box-grow3 {
+	flex-grow: 3;
+}
+
+.flex-box-grow4 {
+	flex-grow: 4;
+}
+
+/**通用头部样式类型**/
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-width: 640px;
+	margin: 0 auto;
+	height: 1.0rem;
+	text-align: center;
+	line-height: 1.0rem;
+	z-index: 20;
+}
+
+.header img:nth-child(1) {
+	width: 0.18rem;
+	margin-left: 0.3rem;
+}
+
+.header span:nth-child(2) {
+	margin-right: 0.48rem;
+}
+
+/**底部边框设置**/
+.border-b {
+	border-bottom: 1px solid #eaeaea;
+}
+
+.border-b-cc {
+	border-bottom: 1px solid #ccc;
+}
+
+.border-b-f5 {
+	border-bottom: 1px solid #f5f5f5;
+}
+
+/** 头部边框设置 **/
+.border-t {
+	border-top: 1px solid #eaeaea;
+}
+
+.border-t-cc {
+	border-top: 1px solid #ccc;
+}
+
+.border-t-f5 {
+	border-top: 1px solid #f5f5f5;
+}
+
+.border-f8 {
+	border: 1px solid #818181;
+}
+
+.border-ccc {
+	border: 1px solid #ccc;
+}
+
+/**底部导航设置**/
+.bottom-nav {
+	max-width: 640px;
+	position: fixed;
+	margin: 0 auto;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	height: 1rem;
+}
+
+.bottom-nav-blank {
+	clear: both;
+	max-width: 640px;
+	height: 1.2rem;
+}
+
+.bottom-nav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.bottom-nav ul li {
+	text-align: center;
+	padding: 0.2rem 0;
+}
+
+.bottom-nav ul a {
+	text-decoration: none;
+	display: block;
+	outline: none;
+}
+
+.bottom-nav ul img {
+	width: 0.32rem;
+	height: 0.32rem;
+	outline: none;
+}
+
+.bottom-nav ul span {
+	display: block;
+	margin-top: 0.03rem;
+	outline: none;
+}
+
+/** 登录,注册,忘记密码 表单通用样式**/
+.form {
+	margin-top: 0.8rem;
+}
+
+.form ul {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.form ul li {
+	width: 100%;
+	height: 0.8rem;
+}
+
+.form ul li img {
+	width: 0.2rem;
+	height: 0.3rem;
+	margin-left: 0.1rem;
+}
+
+.form ul li input {
+	border: none;
+	margin-left: 0.1rem;
+	height: 0.3rem;
+	outline: none;
+}
+
+.form .p {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 0.3rem;
+	height: 0.5rem;
+}
+
+.form .p a {
+	text-decoration: none;
+}
+
+/**按钮通用样式**/
+.greenBtn {
+	background: #339966;
+	border: none;
+	outline: none;
+}
+
+.grayBtn {
+	background: #EBEBE5;
+	border: none;
+	outline: none;
+}
+
+.clear-b {
+	clear: both;
+}
+
+.border-radius-60 {
+	border-radius: 0.6rem;
+}
+
+.border-radius-15 {
+	border-radius: 0.15rem;
+}
+
+/**提示弹窗自动消失样式**/
+.hint-dialog {
+	background-color: #9b9d9f;
+	font-size: 0.24rem;
+	color: #fff;
+	padding: 0.2rem;
+	border-radius: 0.15rem;
+}
+
+.more-icon {
+	width: 0.12rem;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
+}
+
+.sitem-tip {
+	background-color: #fff;
+	border: 1px solid #f23030;
+	border-radius: 2px;
+	color: #f23030;
+	padding: 0 5px;
+	position: relative;
+	text-align: center;
+	top: -1px;
+	font-style: normal;
+	margin-right: 0.15rem;
+}
+
+.register-save-btn {
+	width: 4.64rem;
+	height: 0.8rem;
+}
+/**  购物车样式**/
+.cart {
+	height: 0.35rem;
+	position: relative;
+}
+
+.cart i {
+	position: relative;
+	left: 0.16rem;
+	top: -0.44rem;
+	display: block;
+	font-weight: bolder;
+	font-style: normal;
+	text-align: center;
+	border-radius: 8px;
+	border-width: 1px;
+	border-style: solid;
+	width: 0.16rem;
+	height: 0.16rem;
+	line-height: 0.16rem;
+	margin: 0 auto;
+	z-indx: 10;
+	font-size: 0.14rem;
+}
+
+.proCon {
+	border-color: #FF9900;
+	background: #ffffcc;
+	color: #FF6600;
+}
+
+i {
+	font-style: normal;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.font-weight-b {
+	font-weight: bold;
+}

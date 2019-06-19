@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title><c:if test="${title==null}">订单支付错误</c:if>
+<c:if test="${title!=null}">${title}</c:if>
+</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/orderpay.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="${ctx}/js/pay.js" charset="utf-8"></script>
+<body>
+	<div class="container">
+		<%--订单参数不正常,提示错误 --%>
+		<div class="error-content">
+			<img src="${ctx}images/error.png" />
+			<div class="fs26">${errorMsg}</div>
+			<button
+				class="greenBtn order-error-btn fs26 fc-white flex-box flex-box-justify-content">确定</button>
+		</div>
+	</div>
+</body>
+</html>

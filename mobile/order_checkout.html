@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>提交订单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="${ctx}/styles/common.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/styles/checkout.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src='${ctx}/js/dialog.js' charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/checkout.js'
+	charset='utf-8'></script>
+<script>
+$(function(){
+	checkOrder();
+	Checkout.initView();
+	//收货地址点击
+	$(".address").click(function() {
+		window.location.href = "/address_list.html?returnUrl=/order_checkout&addrId=${addrId}";
+	});
+	$(".order-product-more").click(function() {
+		window.location.href = "/order_productlist.html";
+	});
+	$(".go-balance").bind("click",function(){
+	   Checkout.submitOrder();
+	});
+});
+function checkOrder(){
+	//订单的各种基本条件校验
+	<c:if test="${address==null}">
+		layer.open({
+					content : '您还没有收货地址,请先设置收货地址',
+					btn : [ '确认', '取消' ],
+					yes : function(index) {
+						window.location.href = "/address_edit.html?returnUrl=/order_checkout";
+					},
+					no : function(index) {
+						layer.close(index);
+						window.history.back(-1);
+					}
+				});
+	</c:if>
+	<c:if test="${onlinePay==null && goodspay==null}">
+           historyBack('请联系管理员开通支付方式!');
+	</c:if>
+	<c:if test="${shipList==null || fn:length(shipList)==0}">
+	      historyBack('请联系管理员设置配送方式!');
+	</c:if>
+	<c:if test="${noshipTime==true}">
+      historyBack('请联系管理员设置发货时间!');
+    </c:if>
+}
+function back() {
+	layer.open({
+		content : '便宜不等人,请三思而行~',
+		btn : [ '去意已决', '我再想想' ],
+		yes : function(index) {
+			window.location.href = "/mycart.html";
+		},
+		no : function(index) {
+			layer.close(index);
+		}
+	});
+}
+function historyBack(msg){
+	layer.open({
+				content : msg,
+				btn : [ '确认', '取消' ],
+				shadeClose : false,
+				yes : function(index) {
+					layer.close(index);
+					window.history.back(-1);
+				},
+				no : function(index) {
+					layer.close(index);
+					window.history.back(-1);
+				}
+			});
+}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b">
+			<img src="${ctx}/images/back.png" onclick="back();" /> <span
+				class="fs28 flex-box-grow2">确认订单</span>
+		</div>
+		<div class="content">
+			<form action="${ctx}/order/submitOrder.action" method="post" id="orderForm">
+				<%--支付类型 0为在线支付,1为货到付款--%>
+				<input type="hidden" name="paytypecode"
+					value="<c:if test='${onlinePay==true}'>0</c:if><c:if test='${onlinePay==null && goodspay==true}'>1</c:if>" />
+				<%--是否支持在线支付 --%>
+				<input type="hidden" name="onlinePay"
+					value='<c:if test="${onlinePay==true}">1</c:if>'>
+				<%--是否支持货到付款 --%>
+				<input type="hidden" name="goodspay"
+					value='<c:if test="${goodspay==true}">1</c:if>'>
+				<input type="hidden" name="consigneeName" value="${address.receiver}" />
+				<input type="hidden" name="consigneeMobile" value="${address.phone}" /> <input
+					type="hidden" name="consigneeAddress"
+					value="${addrss.province}${address.city}${address.county}  ${address.area}" />
+				<c:if test="${goodspayVO.promotion!=null}">
+					<%--货到付款促销,订单满足促销的最低价格 --%>
+					<input type="hidden" name="goodsmintotal"
+						value="${goodspayVO.promotion.mintotal}" />
+					<%--货到付款促销,订单满足促销的减少价格 --%>
+					<input type="hidden" name="goodsdecrtotal"
+						value="${goodspayVO.promotion.decrtotal}" />
+				</c:if>
+				<c:if test="${onlinePayVO.promotion!=null}">
+					<%--在线支付促销,订单满足促销的最低价格 --%>
+					<input type="hidden" name="onlinemintotal"
+						value="${onlinePayVO.promotion.mintotal}" />
+					<%--货到付款促销,订单满足促销的减少价格 --%>
+					<input type="hidden" name="onlinedecrtotal"
+						value="${onlinePayVO.promotion.decrtotal}" />
+				</c:if>
+				<%--配送方式个数 --%>
+				<input type="hidden" name="shiptypelength"
+					value="${fn:length(shipList)}" />
+				<%--商品总价格 --%>
+				<input type="hidden" name="ptotal" value="${ptotal}" />
+				<%--当前选择的配送方式id --%>
+				<input type="hidden" name="shipTypeid" value="<c:if test='${shipList!=null && fn:length(shipList)>0}'>${shipList[0].id}</c:if>" />
+				<%--配送时间类型 --%>
+				<input type="hidden" name="shipTimeType" value="${shipTimeType}" />
+				<%--当前配送方式的id在,只针对标准配送方式有效--%>
+				<input type="hidden" name="shipTimeid" value="" />
+				<%--获取标准配送方式的配送方式的个数,只针对标准配送有效--%>
+				<input type="hidden" name="shipTimelength"
+					value="${fn:length(shipTimeList)}" />
+				<%--是否支持立即配送 --%>
+				<input type="hidden" name="sendNow" value="${sendNow}" />
+				<%--可配送的最快时间--%>
+				<input type="hidden" name="sendMinTime" value="${sendMinTime}" />
+				<%--是否支持预定配送 --%>
+				<input type="hidden" name="canReserveDay" value="${canReserveDay}" />
+				<%--配送时间段统计,包括可预订天数的总时间段,主要用在用于判断配送时间的 more图标是否显示--%>
+				<input type="hidden" name="count" value="${count}" />
+				<%--配送实际 --%>
+				<input type="hidden" name="shipTime" value=""/>
+				<%--maxHeight 记录底部最多个个数,主要用在确定配送时间弹窗的高度  个数*0.9=总高度 --%>
+				<input type="hidden" name="maxHeight" value="${maxHeight}"/>
+				<%--多时段多日配送请求url--%>
+				<input type="hidden" name="complexShipTimeUrl" value="${ctx}/order/complexShipTime.action"/>
+			    <%--订单总金额--%>
+				<input type="hidden" name="total" value="0"/>
+				<%--订单备注 --%>
+				<input type="hidden" name="remark" value=""/>
+				<div class="border-b bg-color-white address">
+					<div class="first flex-box">
+						<span class="fs26">${address.receiver}</span><strong class="fs26">${address.phone}</strong>
+						<c:if test="${address.isDefault==1 }">
+							<i class="sitem-tip-default fs24">默认</i>
+						</c:if>
+					</div>
+					<div class="second fs24 fc-b6b6 border-b flex-box">
+						<div class="span-img">
+							<img class="nav-icon" src="${ctx}/images/addr.png" />
+						</div>
+						<div class="span-text flex-box-grow2">${addrss.province}${address.city}${address.county}&nbsp&nbsp&nbsp${address.area}</div>
+						<div>
+							<img class="more-icon" src="${ctx}/images/more.png" />
+						</div>
+					</div>
+				</div>
+				<div class="order-product bg-color-white border-b">
+					<!-- 订单中只有一个商品的处理 -->
+					<c:if test="${cartVO!=null}">
+						<div class="flex-box">
+							<img class="product-img" src="${ctx}${cartVO.imgpath}">
+							<div
+								class="flex-box-grow1 flex-box-direction-column cart-product-msg">
+								<div class="fs24 flex-box-grow1">${cartVO.name}</div>
+								<c:if
+									test="${cartVO.spec0!=null || cartVO.spec1!=null || cartVO.spec2!=null }">
+									<div class="fs22 fc-9 flex-box-grow1">
+										规格:
+										<c:if test="${cartVO.spec0!=null}">${cartVO.spec0 }&nbsp;&nbsp;&nbsp;</c:if>
+										<c:if test="${cartVO.spec1!=null }">${cartVO.spec1 }&nbsp;&nbsp;&nbsp;</c:if>
+										<c:if test="${cartVO.spec2!=null }">${cartVO.spec2 }</c:if>
+									</div>
+								</c:if>
+								<div class="flex-box flex-box-grow1 pmsg">
+									<strong class="fs24 fc-red">￥<i><fmt:formatNumber
+												value="${cartVO.price}" type="currency" pattern="0.00" /></i></strong>
+									<div class="fs24 flex-box-grow1 product-quantity">数量:${cartVO.quantity}件</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<!-- 订单中有多个商品的处理 -->
+					<c:if test="${imgArray!=null}">
+						<div class="flex-box order-product-more">
+							<c:forEach var="imgpath" items="${imgArray}">
+								<div>
+									<img src="${imgpath}" class="product-img" />
+								</div>
+							</c:forEach>
+							<div class="fs24 flex-box-grow1 product-quantity">共${total}件</div>
+							<div>
+								<img class="more-icon" src="${ctx}/images/more.png" />
+							</div>
+						</div>
+					</c:if>
+				</div>
+				<div class="order-setting bg-color-white border-b">
+					<ul>
+						<li class="flex-box border-b order-paytype"><label
+							class="fs26 flex-box-grow2">支付方式</label>
+							<div class="fs26 order-paytype-content"></div> <img
+							class="more-icon" src="${ctx}/images/more.png" /></li>
+						<li class="flex-box border-b order-shiptype"><label
+							class="fs26 flex-box-grow2">配送方式</label>
+							<div class="fs26 order-shiptype-content"></div> <img
+							class="more-icon" src="${ctx}/images/more.png" /> <%--配送方式数据读取 --%>
+							<div style="display:none" class="order-paytype-dialog">
+								<ul>
+									<c:forEach items="${shipList}" var="shipType"
+										varStatus="status">
+										<c:if test="${!status.last}">
+											<li class='fs26 shiptype-li border-b'
+												onclick='Checkout.chooseShipType(this)'
+												data-value="${shipType.id},${shipType.areaCostType},${shipType.freight},${shipType.promotion.mintotal}">${shipType.name}</li>
+										</c:if>
+										<c:if test="${status.last}">
+											<li class='fs26 shiptype-li'
+												onclick='Checkout.chooseShipType(this)'
+												data-value="${shipType.id},${shipType.areaCostType},${shipType.freight},${shipType.promotion.mintotal}">${shipType.name}</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</div></li>
+						<li class="flex-box border-b order-shiptime"><label
+							class="fs26 flex-box-grow2">配送时间</label>
+							<div class="fs26 order-shiptime-content"></div> <img
+							class="more-icon" src="${ctx}/images/more.png" /> <c:if
+								test="${shipTimeType==1}">
+								<div style="display:none" class="order-shiptime-dialog">
+									<ul>
+										<c:forEach items="${shipTimeList}" var="shipTime"
+											varStatus="status">
+											<c:if test="${status.last}">
+												<li class='fs26 shiptime-li' onclick='Checkout.chooseShipTime(this)'
+													data-id="${shipTime.id}">${shipTime.content}</li>
+											</c:if>
+											<c:if test="${!status.last}">
+												<li class='fs26 border-b shiptime-li'
+													onclick='Checkout.chooseShipTime(this)' data-id="${shipTime.id}">${shipTime.content}</li>
+											</c:if>
+										</c:forEach>
+									</ul>
+								</div>
+							</c:if>
+						<li class="flex-box border-b order-beizhu"><label
+							class="fs26 flex-box-grow2">备注</label>
+							<img class="more-icon" src="${ctx}/images/more.png" />
+							<div class="beizhu" style="display:none;">
+						    <div class="bg-color-white border-b flex-box">
+						       <textarea class="fs26 textarea-input flex-box-grow2" name="beizhu" placeholder="请填写备注内容"></textarea>
+						       <button class="save-beizhu greenBtn fs26 fc-white" type="button" onclick="Checkout.updateOrderRemark(this);">
+							       确定</button>
+						    </div>
+						    </div>
+							</li>
+					</ul>
+				</div>
+				<div class="order-price bg-color-white border-b">
+					<ul>
+						<li class="flex-box order-product-price"><label
+							class="fs26 flex-box-grow2">商品金额</label>
+							<div class="fs26">
+								<strong id="price" class="fs24 fc-red">￥<i><fmt:formatNumber
+											value="${ptotal}" type="currency" pattern="0.00" /></i></strong>
+							</div>
+							<div class="img-div"></div></li>
+						<li class="flex-box order-send-price"><label
+							class="fs26 flex-box-grow2">运费</label>
+							<div class="fs26">
+								<strong id="sendprice" class="fs24 fc-red">+￥<i><fmt:formatNumber
+											value="0" type="currency" pattern="0.00" /></i></strong>
+							</div>
+							<div class="img-div"></div></li>
+						<li class="flex-box border-b order-promotion-price"><label
+							class="fs26 flex-box-grow2">优惠</label>
+							<div class="fs26">
+								<strong id="proprice" class="fs24 fc-red">-￥<i>0</i></strong>
+							</div>
+							<div class="img-div"></div></li>
+					</ul>
+				</div>
+				<div class="cart-calculate flex-box bg-color-white border-t">
+					<div class="flex-box-grow2 total-price">
+						<span class="fs26 fc-red">合计:</span><strong class="fs26 fc-red">￥<i><fmt:formatNumber
+									value="0" type="currency" pattern="0.00" /></i></strong>
+					</div>
+					<div class="flex-box-grow2 t">
+						<button class="go-balance greenBtn fs28 fc-white" type="button">
+							提交订单</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

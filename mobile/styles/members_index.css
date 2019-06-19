@@ -1,0 +1,121 @@
+body {
+	font-size: 15px;
+}
+
+.top {
+	max-width: 640px;
+	height: 1.5rem;
+	line-height: 1.5rem;
+}
+
+.top div {
+	width: 0.8rem;
+	height: 0.8rem;
+	margin-left: 0.15rem;
+	float: left;
+	margin-top: 0.2rem;
+}
+
+.top div img {
+	width: 0.71rem;
+	height: 0.71rem;
+	border-radius: 50%;
+}
+
+.top span {
+	float: left;
+	display: block;
+	margin-left: 0.12rem;
+}
+
+.order-nav {
+	width: 100%;
+}
+
+.order-nav .order {
+	display: block;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	text-decoration: none;
+	color: #000;
+}
+
+.order-nav .order .myorder {
+	margin-left: 0.15rem;
+}
+
+.order-nav .order .allorder {
+	float: right;
+	margin-right: 0.15rem;
+}
+
+.order-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0.1rem 0;
+	position: relative;
+	height: 1.2rem;
+}
+
+.order-list li {
+	text-align: center;
+}
+
+.order-list li a {
+	display: block;
+	text-decoration: none;
+}
+
+.order-list li a img {
+	width: 0.72rem;
+}
+
+.order-list li a span {
+	display: block;
+	margin-top: 0.08rem;
+}
+
+.item-nav {
+	max-width: 640px;
+}
+
+.item-nav ul {
+	margin-top: 0.3rem;
+	position: relative;
+}
+
+.item-nav ul li {
+	width: 100%;
+	text-align: center;
+	height: 0.9rem;
+}
+
+.setting:before {
+	content: " ";
+	display: inline-block;
+	width: 100%;
+	height: 0.3rem;
+	background: #f3f3f3 none repeat scroll 0 0;
+}
+
+.setting {
+	padding-bottom: 0.3rem;
+}
+
+.item-nav ul li a {
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
+.item-nav ul li a .nav-icon {
+	width: 0.36rem;
+	height: 0.36rem;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
+}
+
+.item-nav ul li a span {
+	display: block;
+	text-align: left;
+}

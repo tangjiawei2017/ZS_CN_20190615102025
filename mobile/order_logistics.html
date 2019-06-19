@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>订单跟踪</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="${ctx}/layui/css/layui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script src="${ctx}/layui/layui.js"></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<style>
+.content-logistic {
+	width: 100%;
+	margin-top: 1.2rem;
+	padding-top: 0.2rem;
+	background: #fff;
+	min-height: 1.0rem;
+}
+
+.layui-timeline-title,.layui-text {
+	font-weight: normal;
+	color: #848689 !important;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b">
+			<img src="${ctx}images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">订单跟踪</span>
+		</div>
+		<div class="content-logistic">
+			<ul class="layui-timeline">
+				<c:forEach items="${logisticsList}" var="logistic">
+					<li class="layui-timeline-item"><i
+						class="layui-icon layui-timeline-axis"></i>
+						<div class="layui-timeline-content layui-text">
+							<div class="layui-timeline-title fs28">${logistic.content}</div>
+							<p>
+								<fmt:formatDate value="${logistic.date}"
+									pattern="yyyy-MM-dd HH:mm:ss" />
+							</p>
+						</div></li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

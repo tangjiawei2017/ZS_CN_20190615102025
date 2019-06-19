@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>微信支付</title>
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<style>
+ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+	<c:if test="${requestWeChatCode=='success'}">
+	function callpay() {
+		WeixinJSBridge.invoke('getBrandWCPayRequest', {
+			"appId" : "${appId}",
+			"timeStamp" : "${timeStamp}",
+			"nonceStr" : "${nonceStr}",
+			"package" : "${package}",
+			"signType" : "${signType}",
+			"paySign" : "${paySign}"
+		}, function(res) {
+			if (res.err_msg == "get_brand_wcpay_request:ok") {
+				// alert("微信支付成功!");  
+				window.location = '${requestUrlok}';
+			} else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+				//alert("用户取消支付!");  
+				history.go(-1);
+			} else {
+				//弹窗错误描述  当前页面的URL未注册 微信网页授权要授权到支付页面的上一级！！
+				alert(res.err_desc);
+				window.location = '${requestUrlfail}';
+			}
+		});
+	}
+	function wxPay() {
+		if (typeof window.WeixinJSBridge != "undefined") {
+			window.clearInterval(t);
+			callpay();
+		}
+	}
+	var t = setInterval("wxPay()", 200);
+	</c:if>
+</script>
+</head>
+<body>
+	<div class="wappay">
+		<div class="advPayment">
+			<ul>
+				<li class="payment"><em class="fixed_stress fs28">微信安全支付<br />&nbsp;&nbsp;正在加载...
+				</em></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

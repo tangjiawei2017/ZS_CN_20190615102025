@@ -1,0 +1,285 @@
+.header img:nth-child(3) {
+	width: 0.305rem;
+	height: 0.305rem;
+	margin-right: 0.3rem;
+}
+.back{
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    left: .3125rem;
+	top: .3125rem;
+	width:0.5rem;
+	height:0.5rem;
+    z-index: 3;
+}
+.back img{
+   width:0.18rem;
+   position: absolute;
+   left: 0.15rem;
+   top: 0.1rem; 
+}
+.swiper-container {
+	margin: 0;
+	padding: 0;
+}
+
+.swiper-container .swiper-wrapper  .swiper-slide img {
+	width: 6.4rem;
+}
+
+.product-name-div {
+	height: 0.9rem;
+	padding-left: 0.2rem;
+}
+
+.product-name-div span {
+	display: block;
+}
+
+.product-name-div strong i {
+	font-style: normal;
+	font-size: 0.28rem;
+}
+
+.product-promo-div {
+	height: auto;
+	padding: 0.2rem 0;
+}
+
+.product-promo-div .product-promo {
+	text-align: left;
+}
+
+.product-promo-div .product-promo div {
+	line-height: 0.45rem;
+}
+
+.product-spec-ul {
+	clear: both;
+	margin-top: 0.3rem;
+}
+
+.product-label {
+	display: block;
+	height: 100%;
+	width: 0.8rem;
+	margin-right: 0.2rem;
+	text-align: right;
+}
+
+.product-spec-ul li {
+	margin-top: 0.1rem;
+	margin-bottom: 0.2rem;
+}
+
+.product-spec-ul li .choose {
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+	display: inline-block;
+	border-color: #d3d3d3;
+	padding: 0.1rem;
+	margin-right: 0.3rem;
+	position: relative;
+}
+
+.product-spec-ul li .choose i {
+	background: rgba(0, 0, 0, 0) url("../images/choose_ico.gif") no-repeat
+		scroll 0 0;
+	display: none;
+	bottom: 0;
+	height: 11px;
+	position: absolute;
+	right: 0;
+	width: 11px;
+}
+
+.product-spec-ul li .choose-act {
+	border: 2px solid #f00 !important;
+}
+
+.product-spec-ul li .choose-act i {
+	display: block;
+}
+
+.product-spec-ul .product-buy-label {
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
+}
+
+.product-spec-ul .product-buy-count {
+	height: 0.6rem;
+}
+
+.product-spec-ul li .minus {
+	border-radius: 0.03rem 0 0 0.03rem;
+}
+
+.product-spec-ul li .plus {
+	border-radius: 0 0.03rem 0.03rem 0;
+}
+
+.product-spec-ul li .minus,.product-spec-ul li .plus {
+	display: inline-block;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	width: 0.4rem;
+	text-align: center;
+}
+
+.product-spec-ul .icount {
+	border: 1px solid #818181;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	height: 0.4rem;
+	text-align: center;
+	width: 0.8rem;
+	margin: 0;
+	padding: 0;
+}
+
+.prev {
+	background-image: url("../images/btn_sub.png");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	display: inline-block;
+	height: 0.15rem;
+	width: 0.15rem;
+	background-position: 0 center;
+}
+
+.next {
+	background-image: url("../images/btn_add.png");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	display: inline-block;
+	height: 0.15rem;
+	width: 0.15rem;
+	background-position: 0 center;
+}
+
+.product-spec-ul .product-buy-unit {
+	font-style: normal;
+	margin: 0 0.2rem;
+}
+
+.product-detail-desc {
+	width: 100%;
+	margin: 0;
+	height: 2.5rem;
+}
+
+.product-detail-desc .title {
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding-left: 0.2rem;
+}
+
+.pro_card_option {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	overflow: hidden;
+	width: 100%;
+}
+
+.pro_card_option li span {
+	display: block;
+	width: 1.2rem;
+	height: 100%;
+}
+
+.pro_card_option li {
+	width: 100%;
+	text-align: center;
+	background-color: #fff;
+	height: 100%;
+}
+
+.pro_card_option span.currentCard {
+	background-color: #fff;
+	border-bottom: 3px solid #e7380c;
+	color: #e7380c;
+	height: 100%;
+}
+
+.product-buy-btn {
+	width: 100%;
+	height: 1.0rem;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	max-width: 640px;
+	margin: 0 auto;
+	z-index: 20;
+}
+
+.product-buy-btn  a {
+	height: 100%;
+	display: block;
+	text-decoration: none;
+	outline: none;
+	text-align: center;
+}
+
+.product-buy-btn  a img {
+	height: 0.32rem;
+	outline: medium none;
+	width: 0.32rem;
+}
+
+.product-buy-btn  a span {
+	display: block;
+	margin-top: 0.03rem;
+	outline: medium none;
+}
+
+.product-buy-btn .buy-btn {
+	width: 100%;
+	height: 1.0rem;
+}
+
+.review-count .count {
+	float: left;
+}
+
+.product_mark {
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+}
+
+.review-count {
+	height: 0.6rem;
+	line-height: 0.6rem;
+}
+
+.review-count .good-reiview {
+	float: right;
+}
+
+.product-detail-desc img {
+	max-width: 6.4rem;
+}
+
+.review-li .first {
+	height: 0.7rem;
+	line-height: 0.7rem;
+}
+
+.review-li .first .members-logo {
+	width: 0.497rem;
+	border-radius: 50%;
+	margin-right: 0.2rem;
+}
+
+.review-li .first .review-star-img img {
+	width: 0.25rem;
+	margin-left: 0.1rem;
+}
+
+.third {
+	height: 0.6rem;
+	line-height: 0.6rem;
+}

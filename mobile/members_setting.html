@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员设置</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/setting.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+	$(function() {
+		$.ajax({
+            url : "/customer/checkCustomerIsLogin.action",
+			type : "post",
+			dataType:"json",
+			success : function(result) {
+				if(result.code==200){
+                    if(result.data.isLogin){
+						var customer= result.data.customer;
+						$("input[name='id']").val(customer.id);
+                        if(customer.imagePath!=null && customer.imagePath!=''){
+							$("input[name='imgPath']").val(customer.imagePath);
+							$(".login-div img").attr("src",customer.imagePath);
+						}
+						$("li .account").html(customer.account);
+						$("li .name").html(customer.name);
+						var sex='';
+						if(customer.sex==2){
+							sex="男";
+						}else if(customer.sex==1){
+							sex="女";
+						}else{
+							sex="保密";
+						}
+						$("li .sex").html(sex);
+						$("li .phone").html(customer.cellphone);
+                    }else{
+						window.location.href="/members_index.html";
+					}
+                }
+			}
+        });
+		//设置表单提交
+		$("#uploadform input[name='file']").change(function() {
+			var form = document.forms['uploadform'];
+			form.method = "post";
+			form.action = "/customer/updateCustomerIcon.action";
+			form.enctype = "multipart/form-data";
+			form.submit();
+		});
+		$("ul li").click(function() {
+			var index = $(this).data("index");
+			switch (index) {
+			case 0: {
+				$("#uploadform input[name='file']").click();
+				break;
+			}
+			case 1: {
+				layer.open({
+					content : '用户名不支持修改哟~',
+					skin : 'msg',
+					time : 2
+				//2秒后自动关闭
+				});
+				break;
+			}
+			case 2:{
+				window.location.href = "/modifyPassword.html";
+				break;
+			}
+			case 3: {
+				window.location.href = "/modifyName.html";
+				break;
+			}
+			case 4: {
+				window.location.href = "/modifySex.html";
+				break;
+			}
+			case 5: {
+				window.location.href = "/modifyPhone.html";
+				break;
+			}
+			case 6: {
+				//询问框
+				layer.open({
+							content : '确认退出登录？',
+							btn : [ '确认', '取消' ],
+							yes : function(index) {
+								window.localStorage['token']='';
+								window.location.href = "/members_index.html";
+							}
+						});
+				break;
+			}
+			}
+		});
+	});
+	//图片上传回调
+	function callback(path) {
+		$(".login-icon").attr("src", path);
+		$("input[name='imgPath']").val(path);
+	}
+	function back() {
+		window.location.href = "/members_index.html";
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="images/back.png" onclick="back();" /> <span
+				class="fs28 flex-box-grow2">个人信息</span>
+		</div>
+		<div class="content">
+			<div style="display:none">
+				<form action="" name="uploadform" method="post"
+					target="callbackIframe" id="uploadform">
+					<input type="text" name="id" value="" /> <input
+						type="text" name="imgPath" value="">
+					<input type="file" name="file">
+				</form>
+			</div>
+			<ul>
+				<li class="li border-b bg-color-white flex-box" data-index="0">
+					<strong class="fs26">头像</strong>
+					<div class="flex-box-grow2 login-div">
+					    <img class="login-icon" src="images/nologin.png" />
+					</div> 
+					<img class="more-icon" src="images/more.png">
+				</li>
+				<li class="li border-b bg-color-white flex-box" data-index="1">
+					<strong class="fs26">用户名</strong> <span
+					class="fc-999 fs26 flex-box-grow2 account"></span> <img
+					style="visibility:hidden" class="more-icon"
+					src="images/more.png">
+				</li>
+				<c:if test="${customer.wxId!=null}">
+					<li class="li border-b bg-color-white flex-box" data-index="2">
+						<strong class="fs26">密码</strong> <span
+						class="fc-999 fs26 flex-box-grow2">******</span> <img
+						 class="more-icon"
+						src="images/more.png">
+					</li>
+				</c:if>
+				<li class="li border-b bg-color-white flex-box" data-index="3">
+					<strong class="fs26">姓名</strong> <span
+					class="flex-box-grow2 fc-999 fs26 name"></span> <img
+					class="more-icon" src="images/more.png">
+				</li>
+				<li class="li border-b bg-color-white flex-box" data-index="4">
+					<strong class="fs26">性别</strong> <span
+					class="flex-box-grow2 fc-999 fs26 sex"></span> <img class="more-icon" src="images/more.png">
+				</li>
+				<li class="li border-b bg-color-white flex-box" data-index="5">
+					<strong class="fs26">手机号码</strong> <span
+					class="flex-box-grow2 fc-999 fs26 phone"></span> <img
+					class="more-icon" src="images/more.png">
+				</li>
+				<li class="border-b bg-color-white login-out" data-index="6"><span
+					class="fc-black fs26 login-out-span">退出登录</span></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<iframe name="callbackIframe" style="display:none;"> </iframe>
+</html>

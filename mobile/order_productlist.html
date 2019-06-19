@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商品清单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/mycart.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+	$(function(){
+        $.ajax({
+			 url:"/order/productlist.action",
+			 type:"post",
+			 dataType:"json",
+			 success:function(result){
+				 if(result.code=200 && result.data!=null){
+					var cartVo=result.data.cartVo;
+					$(".total i").html(result.data.quantity);
+					for(var i=0;i<cartVo.length;i++){
+						var cart =cartVo[i];
+						var $li ='<li class="border-b bg-color-white flex-box"><img src="'
+								+ cart.imgpath+'"><div class="flex-box-grow1 flex-box-direction-column cart-product-msg">'
+								+ '<div class="fs24 flex-box-grow1">'+cart.name+'</div>';
+						if(cart.spec0!=null || cart.spec1!=null || cart.spec2!=null){
+							$li = $li +'<div class="fs22 fc-9 flex-box-grow1">规格:';
+							if(cart.spec0!=null){
+							$li = $li + cart.spec0+'&nbsp;&nbsp;&nbsp;';
+							}
+							if(cart.spec1!=null){
+							$li = $li + cart.spec1+'&nbsp;&nbsp;&nbsp;';
+							}
+							if(cart.spec2!=null){
+							$li = $li + cart.spec2;
+							}
+						}
+						$li= $li +'<div class="flex-box flex-box-grow1 pmsg"><strong class="fs24 fc-red">￥<i>'+cart.price+'</i></strong>'
+						    + '<div class="fs24 flex-box-grow1 product-quantity">数量:'+cart.quantity+'件</div></div></div></li>';
+					     $(".cart_product_ul").append($li);
+					}
+				 }
+			 }
+       
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">商品清单</span> <span
+				class="total fs24">共<i></i>件</span>
+		</div>
+		<div class="cart_content">
+			<ul class="cart_product_ul">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

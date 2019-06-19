@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>收货地址</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/address.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/address_list.js" charset="utf-8"></script>
+<script>
+  $(function(){
+	Address.initView();
+  });
+</script>
+</head>
+<body>
+	<div class="container address-list">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="/images/back.png" onclick="Address.back()" /><span
+				class="fs28 flex-box-grow2">收货地址管理</span>
+		</div>
+		<div class="content">
+			<ul>
+			</ul>
+			<div class="new-addr-div bg-color-f3">
+				<div
+					class="greenBtn newaddr fs26 fc-white flex-box flex-box-justify-content">
+					<img src="/images/add.png" /><span>新建地址</span>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="container order-address-list" style="display: none">
+		<div class="header flex-box bg-color-white border-b-cc">
+				<img src="/images/back.png" onclick="history.back(-1);" />
+				<span class="fs28 flex-box-grow2">收货地址</span>
+		</div>
+		<div class="content">
+			<ul>
+					
+			</ul>
+			<div class="new-addr-div bg-color-f3">
+				<div class="greenBtn newaddr fs26 fc-white flex-box flex-box-justify-content">
+					<img src="/images/add.png" /><span>新建地址</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

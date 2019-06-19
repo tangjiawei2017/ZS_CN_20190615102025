@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>评价晒单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/myOrder.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="${ctx}/js/review.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-f5">
+			<img src="${ctx}images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">评价晒单</span>
+		</div>
+		<div class="content">
+			<div class="card"></div>
+			<c:if test="${productReivewList!=null}">
+				<c:forEach items="${productReivewList}" var="review">
+					<div class="order-box bg-color-white border-b-f5">
+						<div class="flex-box">
+							<img class="product-img" src="${review.productImage}">
+							<div class="flex-box-grow1 order-product-msg">
+								<div class="fs26 flex-box-grow1">${review.productName}</div>
+								<c:if
+									test="${review.spec0!=null || review.spec1!=null || review.spec2!=null}">
+									<div class="fs24 fc-9 flex-box-grow1">
+										规格:
+										<c:if test="${review.spec0!=null}">${review.spec0 }&nbsp;&nbsp;</c:if>
+										<c:if test="${review.spec1!=null}">${review.spec1 }&nbsp;&nbsp;</c:if>
+										<c:if test="${review.spec2!=null}">${review.spec2 }</c:if>
+									</div>
+								</c:if>
+							</div>
+							<div class="fs24 order-oper-botton">
+								<c:if test="${review.isreview==0}">
+									<button  class="fc-red fs24 evaluatebtn" onclick="goProductReview(${review.id})">评价晒单</button>
+								</c:if>
+								<c:if test="${review.isreview==1}">
+									<span class="fs24 hasReview">已评价</span>
+								</c:if>
+							</div>
+	
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${productReivewList==null || fn:length(productReivewList)==0}">
+			     <div class='fs30 fc-999 no-order'>您还没有相关订单</div>
+			</c:if>
+			<c:if test="${order!=null}">
+				<div class="card"></div>
+				<input type="hidden" name="orderId" value="${order.id}"/>
+				<c:if test="${order.isServiceReview==0}">
+					<div class="order-box bg-color-white service">
+						<ul>
+							<li class="fisrt flex-box border-b-f5"><strong
+								class="flex-box-grow2 fs26">物流服务评价</strong> <span
+								class="fs22 fc-999">满意请给五星哦</span></li>
+							<li class="secend flex-box border-b-f5"><strong
+								class="flex-box-grow2 fs24">配送服务</strong><span> <img
+									src="${ctx}images/star_cur.png" /><img
+									src="${ctx}images/star_cur.png" /><img
+									src="${ctx}images/star_cur.png" /><img
+									src="${ctx}images/star_cur.png" /><img
+									src="${ctx}images/star_cur.png" />
+							</span></li>
+							<li class="third">
+								<div class="border-b border-t flex-box">
+									<textarea class="fs24 textarea-input flex-box-grow2" name="reviewContent"
+										placeholder="您的评价是对我们工作的最好反馈"></textarea>
+								</div>
+							</li>
+						</ul>
+						<div class="fs24 order-oper-botton margin-top order-box">
+							<button  class="fc-red fs24 servicebtn">发表评论</button>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${order.isServiceReview==1}">
+					<div class="order-box bg-color-white service">
+						<ul>
+							<li class="fisrt flex-box border-b-f5"><strong
+								class="flex-box-grow2 fs26">物流服务评价</strong> <span
+								class="fs22 hasReview">已评价</span></li>
+						</ul>
+					</div>
+				</c:if>
+			</c:if>
+		</div>
+	</div>
+</body>
+</html>

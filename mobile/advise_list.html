@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>反馈记录</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/advise.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+$(function(){
+     $.ajax({
+		  url:"/advise/list.action",
+		  type:"post",
+		  dataType:"json",
+		  success:function(result){
+			  if(result.code==200){
+				   var data=result.data;
+				   for(var i=0;i<data.length;i++){
+					   var $li='<li class="bg-color-white border-top-cc border-b-cc flex-box flex-box-direction-column'
+							  +' flex-box-justify-content-left"><div class="advise-list-div flex-box-grow2"><strong class="fs26 fc-black">'
+							  + data[i].content+'</strong> <i class="fs24 fc-999">'+data[i].createTime+'</i></div>';
+						if(data[i].answer!=null){
+						   $li = $li +'<div class="advise-answer-div border-t"><i class="fs20 fc-999 advise-answer">店主回复:</i>'
+							   + '<div class="fs26 fc-999"><span>'+data[i].answer+'</span></div></div>';
+						}
+						$li = $li +'</div>';
+						$(".advise-list").append($li);
+				   }
+			  }
+		  }
+		
+	 });
+});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="/images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">反馈记录</span>
+		</div>
+		<div class="content">
+			<ul class="advise-list">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员中心</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css"
+	href="styles/members_index.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/members_index.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="customer-nologin">
+			<div class="top bg-color-green" onclick="tologin();">
+				<div>
+					<img src="images/nologin.png" class="icon-login" />
+				</div>
+				<span class="fs28 fc-white">登录/注册</span>
+			</div>
+			<div class="order-nav bg-color-white">
+				<a class="order border-b-f5" href="members_login.html"><span
+					class="myorder fs26">我的订单</span><span class="allorder fs24 fc-999">全部订单
+						></span></a>
+				<ul class="order-list flex-box">
+					<li class="flex-box-grow1"><a href="members_login.html"><img
+							src="images/waitpay.png" /><span class="fs22  fc-666">待付款</span></a></li>
+					<li class="flex-box-grow1"><a href="members_login.html"><img
+							src="images/waitdelivery.png" /><span
+							class="fs22 fc-666">待发货</span></a></li>
+					<li class="flex-box-grow1"><a href="members_login.html"><img
+							src="images/waitevaluate.png" /><span
+							class="fs22 fc-666">待评价</span></a></li>
+				</ul>
+			</div>
+			<div class="item-nav">
+				<ul>
+					<li class="border-b bg-color-white"><a
+						href="members_login.html" class="flex-box"><img
+							class="nav-icon" src="images/address.png" /><span
+							class="fs24 flex-box-grow2">地址管理</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a
+						href="call2order.html" class="flex-box"><img
+							class="nav-icon" src="images/phone.png" /><span
+							class="fs24 flex-box-grow2">电话下单</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a
+						href="members_login.html" class="flex-box"><img
+							class="nav-icon" src="images/collection.png" /><span
+							class="fs24 flex-box-grow2">收藏</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a
+						href="members_login.html" class="flex-box"><img
+							class="nav-icon" src="images/advise.png" /><span
+							class="fs24 flex-box-grow2">意见反馈</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white setting"><a
+						href="members_login.html" class="flex-box"><img
+							class="nav-icon" src="images/setting.png" /><span
+							class="fs24 flex-box-grow2">设置</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="customer-hasLogin" style="display: none;">
+			<div class="top bg-color-green">
+				<div>
+					<img src="images/nologin.png" clasas="icon-login" />
+				</div>
+				<span class="fs28 fc-white account"></span>
+			</div>
+			<div class="order-nav bg-color-white">
+				<a class="order border-b-f5" href="order_myOrder.html"><span
+					class="myorder fs26">我的订单</span><span class="allorder fs24 fc-999">全部订单
+						></span></a>
+				<ul class="order-list flex-box">
+					<li class="flex-box-grow1"><a href="/order_myOrder.html?status=waitpay"><img
+							src="images/waitpay.png" /><span class="fs22  fc-666">待付款</span></a></li>
+					<li class="flex-box-grow1"><a href="/order/myOrder.html?status=waitdelivery"><img
+							src="images/waitdelivery.png" /><span
+							class="fs22 fc-666">待发货</span></a></li>
+					<li class="flex-box-grow1"><a href="/review_list.html"><img
+							src="images/waitevaluate.png" /><span
+							class="fs22 fc-666">待评价</span></a></li>
+				</ul>
+			</div>
+			<div class="item-nav">
+				<ul>
+					<li class="border-b bg-color-white"><a
+						href="address_list.html" class="flex-box"><img
+							class="nav-icon" src="images/address.png" /><span
+							class="fs24 flex-box-grow2">地址管理</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a
+						href="call2order.html" class="flex-box"><img
+							class="nav-icon" src="images/phone.png" /><span
+							class="fs24 flex-box-grow2">电话下单</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a
+						href="collect.html" class="flex-box"><img
+							class="nav-icon" src="images/collection.png" /><span
+							class="fs24 flex-box-grow2">收藏</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white"><a href="advise.html"
+						class="flex-box"><img class="nav-icon"
+							src="images/advise.png" /><span
+							class="fs24 flex-box-grow2">意见反馈</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+					<li class="border-b bg-color-white setting"><a
+						href="members_setting.html" class="flex-box"><img
+							class="nav-icon" src="images/setting.png" /><span
+							class="fs24 flex-box-grow2">设置</span><img class="more-icon"
+							src="images/more.png" /></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="bottom-nav-blank bg-color-f3"></div>
+		<div class="bottom-nav bg-color-white border-t">
+			<ul class="flex-box">
+				<li class="flex-box-grow1"><a href="index.html"><img
+						src="images/index.png" /><span class="fs20 fc-999">首页</span></a></li>
+				<li class="flex-box-grow1"><a href="product_list.html"><img
+						src="images/category.png" /><span class="fs20 fc-999">分类</span></a></li>
+				<li class="flex-box-grow1"><a href="mycart.html"><div
+							style="display:none" class="cart">
+							<img src="images/cart.png" /><i class="proCon"
+								id="amount">0</i>
+						</div> <img src="images/cart.png" /> <span class="fs20 fc-999">购物车</span></a></li>
+				<li class="flex-box-grow1"><a href="members_index.html"><img
+						src="images/members_cursor.png" /><span
+						class="fs20 fc-999">会员中心</span></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

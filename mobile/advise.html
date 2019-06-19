@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/advise.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/advise.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container" id="wrapper">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">意见反馈</span> <span class="historyBtn"><a
+				href="advise_list.html" class="fs24 fc-999">历史反馈</a></span>
+		</div>
+		<div class="advise-content">
+			<div class="title fs26">反馈内容</div>
+			<div class="content bg-color-white border-b border-t flex-box">
+				<textarea class="fs24 textarea-input flex-box-grow2" name="content"
+					placeholder="请描述您的具体问题"></textarea>
+			</div>
+		</div>
+		<div class="advise-phone">
+			<div class="title fs26">你的联系方式</div>
+			<div class="content bg-color-white border-b border-t flex-box">
+				<input type="text" name="phone" class="fs24 flex-box-grow2"
+					placeholder="留下邮箱或者电话,方便我们联系你哦~" />
+			</div>
+		</div>
+		<button class="greenBtn fs26 fc-white advise-save-btn">提交反馈</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>修改性别</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/setting.css">
+<style>
+ul li {
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+
+ul li strong {
+	font-weight: normal;
+	margin-left: 0.2rem;
+}
+
+ul li img {
+	width: 0.3rem;
+	margin-right: 0.2rem;
+	float: right;
+	visibility: hidden;
+}
+</style>
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script>
+	var id='';
+	var sex0='';
+	$(function() {
+		$.ajax({
+            url : "/customer/checkCustomerIsLogin.action",
+			type : "post",
+			dataType:"json",
+			async:false,
+			success : function(result) {
+				if(result.code==200){
+                    if(result.data.isLogin){
+						var customer= result.data.customer;
+						var sex0=Number(customer.sex);
+						id=customer.id;
+                    }else{
+						window.location.href="/members_index.html";
+					}
+                }
+			}
+        });
+		var sex = 3 - sex0;
+		$("ul li:nth-child(" + sex + ")").children("img").css("visibility",
+				"visible");
+		$("ul li").click(function() {
+			$(this).children("img").css("visibility", "visible")
+					.parent().siblings().children("img").css(
+							"visibility", "hidden");
+			setTimeout('save(' + $(this).data('index') + ')', 500);
+		});
+	});
+	function save(index) {
+		$.ajax({
+			url : "/customer/updateCustomer.action",
+			type : "post",
+			data : {
+				id :id,
+				sex : index,
+			},
+			success : function(data) {
+				window.location.href = document.referrer;//返回上一页并刷新  
+			}
+		})
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">修改性别</span>
+		</div>
+		<div class="content">
+			<ul class="bg-color-white">
+				<li class="border-b fs26 fc-black flex-box" data-index="2"><strong
+					class="flex-box-grow2">男</strong><img src="images/ok.png" /></li>
+				<li class="border-b fs26 fc-black flex-box" data-index="1"><strong
+					class="flex-box-grow2">女</strong><img src="images/ok.png" /></li>
+				<li class="border-b fs26 fc-black flex-box" data-index="0"><strong
+					class="flex-box-grow2">保密</strong><img src="images/ok.png" /></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

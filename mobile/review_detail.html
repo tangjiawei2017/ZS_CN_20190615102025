@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>评价晒单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/myOrder.css">
+<script type='text/javascript' src='${ctx}/js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='${ctx}/js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="${ctx}/js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src="${ctx}/js/review.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-f5">
+			<img src="${ctx}images/back.png" onclick="history.back(-1)" /> <span
+				class="fs28 flex-box-grow2">评价晒单</span> <span
+				class="fs28 fc-red margin-right" onclick="submitReview(${review.id})">提交</span>
+		</div>
+		<div class="content">
+			<div class="card"></div>
+			<input type="hidden" name="byOrder" value="${byOrder}"/>
+			<div class="order-box bg-color-white border-b-f5">
+				<div class="flex-box">
+					<img class="product-img" src="${review.productImage}">
+					<div class="flex-box-grow1 margin-left review-right">
+						<div class="fs26 flex-box-grow1">评分</div>
+						<div class="review-star">
+							<img src="${ctx}images/star_cur.png" /><img
+								src="${ctx}images/star_cur.png" /><img
+								src="${ctx}images/star_cur.png" /><img
+								src="${ctx}images/star_cur.png" /><img
+								src="${ctx}images/star_cur.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="border-b border-t flex-box">
+				<textarea class="fs24 textarea-input flex-box-grow2" name="content"
+					placeholder="您的评价是对我们工作的最好反馈"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

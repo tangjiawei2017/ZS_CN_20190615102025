@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商品分类</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.min.css">
+<link rel="stylesheet" type="text/css" href="styles/category.min.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/common.js' charset='utf-8'></script>
+<script>
+	$(function() {
+		//请求商品分类数据
+		appAjax("/api/v1/productCategory/list", '',function(result){
+			if(result.code==0){
+				$("#category").html('<li class="on"><span>全部</span></li>');
+				var productArray0=[];
+				var $ul='';
+				for(var i=0;i<result.data.length;i++){
+					var category = result.data[i];
+					$("#category").append('<li><span>' + category.name + '</span></li>');
+					var productArray= result.data[i].productList;
+					productArray0= productArray0.concat(productArray);
+					$ul=$ul+'<ul class="category_list fs24" style="display:none">';  
+					for(var j=0;j<productArray.length;j++){
+						$ul= $ul +'<li><a href="product_detail.html?id='+productArray[j].id+'"> <img src="'+productArray[j].image+'" /><span>'+productArray[j].name+'</span></a></li>';
+					}
+					$ul=$ul+"</ul>";
+				}
+				var $firstUl='<ul class="category_list fs24">';
+				for(var j=0;j<productArray0.length;j++){
+					$firstUl= $firstUl +'<li><a href="product_detail.html?id='+productArray0[j].id+'"> <img src="'+productArray0[j].image+'" /><span>'+productArray0[j].name+'</span></a></li>';
+				}
+				$firstUl=$firstUl+"</ul>";
+				$ul=$firstUl+$ul;
+				$(".categroy").append($ul);
+			}
+			
+			$(".category").children("li").click(function() {
+				if (!$(this).hasClass("on")) {
+					$(this).addClass("on").siblings().removeClass("on");
+					var index = $(".category li").index(this);
+					$(".category_list").eq(index).show();
+					$(".category_list").eq(index).siblings().not(".category").hide();
+				}
+			});
+		});
+
+		//请求购物数据
+		appAjaxWithToken("/api/v1/cart/readCartAmount",'',function(result) {
+				if (result.code == 0) {
+					$("#amount").parent().show().next("img").hide();
+				} else {
+					$("#amount").parent().hide().next("img").show();
+				}
+				$("#amount").html(result.data);
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header bg-color-white fs28">
+			<span>分类</span>
+		</div>
+		<div class="content categroy">
+			<ul id="category" class="category fs24">
+			</ul>
+		</div>
+		<div class="bottom-nav bg-color-white border-t">
+			<ul class="flex-box">
+				<li class="flex-box-grow1"><a href="index.html"><img
+						src="images/index.png" /><span class="fs20 fc-999">首页</span></a></li>
+				<li class="flex-box-grow1"><a href="product_list.html"><img
+						src="images/category_cursor.png" /><span
+						class="fs20 fc-999">分类</span></a></li>
+				<li class="flex-box-grow1"><a href="mycart.html"><div
+							style="display:none" class="cart">
+							<img src="images/cart.png" /><i class="proCon"
+								id="amount">0</i>
+						</div> <img src="images/cart.png" /> <span class="fs20 fc-999">购物车</span></a></li>
+				<li class="flex-box-grow1"><a href="members_index.html"><img
+						src="images/members.png" /><span class="fs20 fc-999">会员中心</span></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

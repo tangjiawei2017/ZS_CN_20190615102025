@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员绑定</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/login.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src='js/login.js' charset='utf-8'></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-white border-b-cc">
+			<img src="images/back.png" onclick="back();" /> <span
+				class="fs28 flex-box-grow2">会员绑定</span>
+		</div>
+		<div class="content">
+			<div class="weixin_title fs26">我是商城会员，绑定商城会员账号:</div>
+			<form class="form" method="post" name="loginForm" id="loginForm"
+				action="">
+				<ul>
+					<li class="border-b flex-box"><img
+						src="images/login_icon_username.png" /><input type="text"
+						name="account" placeholder="用户名/手机号" class="fs24 fc-999"
+						value="" /></li>
+					<li class="border-b flex-box"><img
+						src="images/login_icon_password.png" /><input
+						type="password" name="password" placeholder="密码"
+						class="fs24 fc-999" /></li>
+						<li class="border-b flex-box verifycode" style="display: none"><input type="text"
+							name="verifycode" placeholder="验证码" class="fs24 fc-999" /><img
+							style="width:80px;height:30px;" id="verifycode"
+							src="/servlet/verifyCode" /></li>
+				</ul>
+				<p class="p">
+					<button type="button"
+						class="greenBtn fs26 fc-white border-radius-60 login-save-bind-btn">登录并绑定微信</button>
+				</p>
+			</form>
+			<div class="weixin_bottom">
+				<div class="weixin_title fs26">我不是商城会员:</div>
+				<div class="btn">
+					<button type="button"
+						class="greenBtn fs26 fc-white border-radius-60 login-save-btn2">直接跳过成为会员</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

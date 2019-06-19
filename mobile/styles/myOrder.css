@@ -1,0 +1,167 @@
+body {
+	background: #fff !important;
+}
+
+.content {
+	width: 100%;
+}
+
+.order_card {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	overflow: hidden;
+	width: 100%;
+}
+
+.order_card li {
+	width: 100%;
+	text-align: center;
+	background-color: #fff;
+	height: 100%;
+}
+
+.order_card li span {
+	display: block;
+	width: 1.2rem;
+	height: 100%;
+}
+
+.order_card span.currentCard {
+	background-color: #fff;
+	border-bottom: 3px solid #e7380c;
+	color: #e7380c;
+	height: 100%;
+}
+.card {
+	width: 100%;
+	height: 0.3rem;
+	background: #f5f5f5;
+}
+
+.first {
+	margin-top: 0 !important;
+}
+
+img.product-img {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.order-box .order-total {
+	height: 0.5rem;
+	line-height: 0.5rem;
+	text-align: right;
+	padding-right: 0.3rem;
+}
+
+.order-box .order-oper-botton {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	text-align: right;
+	padding-right: 0.3rem;
+}
+
+.order-box .order-oper-botton button {
+	width: 1.4rem;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	outline: none;
+	background: none;
+	text-align: center;
+	border: 1px solid #ececec;
+	margin-left: 0.2rem;
+}
+
+.order-product-msg {
+	margin-left: 0.2rem;
+}
+
+.no-order {
+	width: 100%;
+	margin-top: 0.6rem;
+	text-align: center;
+}
+
+.loading {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0.6rem;
+	display: none;
+}
+
+.hasReview {
+	display: block;
+	width: 1.2rem;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	text-align: center;
+	background: #f0f2f5;
+	color: #bfbfbf;
+}
+
+.service {
+	padding-top: 0.2rem;
+}
+
+.service ul li {
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+
+.service ul li strong {
+	font-weight: normal;
+	margin-left: 0.3rem;
+}
+
+.service ul li span {
+	margin-right: 0.3rem;
+}
+
+.service ul li.secend span img {
+	width: 0.336rem;
+	margin-left: 0.2rem;
+}
+
+.third {
+	width: 100%;
+	height: 1.5rem !important;
+}
+
+.third div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.textarea-input {
+	height: 1.5rem;
+	padding-left: 0.1rem;
+	overflow: hidden;
+	border: none;
+	outline: none;
+	overflow: hidden;
+	background: #f5f5f5;
+}
+
+.margin-top {
+	margin-top: 0.2rem;
+}
+
+.margin-left {
+	margin-left: 0.2rem;
+}
+
+.margin-right {
+	margin-right: 0.2rem;
+}
+
+.review-right {
+	height: 1.5rem;
+	line-height: 0.75rem;
+}
+
+.review-star img {
+	width: 0.336rem;
+	float: left;
+	margin-right: 0.2rem;
+}

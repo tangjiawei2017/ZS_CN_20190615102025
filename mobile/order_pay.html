@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>订单支付</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/orderpay.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/wxAlipayPro.js"></script>
+<script type='text/javascript' src="js/pay.js" charset="utf-8"></script>
+<body>
+	<div class="container">
+		<c:choose>
+			<c:when test="${showResult==false}">
+				<div class="header flex-box bg-color-white border-b">
+					<img src="${ctx}images/back.png" onclick="history.back(-1);" /> <span
+						class="fs28 flex-box-grow2">订单支付</span>
+				</div>
+				<div class="content">
+					<div class="pay-label flex-box">
+						<label class="flex-box-grow2 fs26 label-left">支付总价</label><label
+							class="fs28 label-right"><strong class="fc-red"><fmt:formatNumber
+									value="${total}" type="currency" pattern="0.00" /></strong>&nbsp;元</label>
+					</div>
+					<form action="" method="post" name="payform" id="payform">
+						<input type="hidden" name="img-ok" value="${ctx}images/ok.png" />
+						<input type="hidden" name="orderId" value="${orderId}" /> <input
+							type="hidden" name="ctx" value="${ctx}" />
+					</form>
+					<ul class="paytype-ul">
+						<c:if test="${wechatpay==true}">
+							<li class="flex-box wechatpay"><img
+								src="${ctx}images/wechatpay.png" class="logo" />
+								<div class="right-div flex-box-grow2 flex-box border-b">
+									<div
+										class="flex-box-grow2 paytype-div-payinfo flex-box flex-box-direction-column flex-box-start">
+										<div class="flex-box-grow2 fs26 align-left title">微信支付</div>
+										<div class="flex-box-grow2 fs24 fc-999 align-left desc">推荐已安装微信客户端的用户使用</div>
+									</div>
+									<img src="${ctx}images/ok.png" class="ok-img" />
+									<div class="img-div" style="display:none"></div>
+								</div></li>
+						</c:if>
+						<c:if test="${alipay==true}">
+							<li class="flex-box alipay"><img
+								src="${ctx}images/alipay.png" class="logo" />
+								<div class="right-div flex-box-grow2 flex-box border-b">
+									<div
+										class="flex-box-grow2 paytype-div-payinfo flex-box flex-box-direction-column flex-box-start">
+										<div class="flex-box-grow2 fs26 align-left title">支付宝</div>
+										<div class="flex-box-grow2 fs24 fc-999 align-left desc">推荐已安装支付宝客户端的用户使用</div>
+									</div>
+									<img src="${ctx}images/ok.png" class="ok-img"
+										<c:if test="${wechatpay==true}">style="display:none"</c:if> />
+									<div class="img-div"
+										<c:if test="${wechatpay==false}">style="display:none"</c:if>></div>
+								</div></li>
+						</c:if>
+					</ul>
+					<div>
+						<button
+							class="greenBtn submit fs28 fc-white flex-box flex-box-justify-content">确认支付</button>
+					</div>
+				</div>
+			</c:when>
+			<c:when test="${showResult==true}">
+				<div class="header flex-box bg-color-white border-b">
+					<img src="${ctx}images/back.png" onclick="history.back(-1);" /> <span
+						class="fs28 flex-box-grow2"> <c:choose>
+							<c:when test="${payResult==1}">
+								<c:if test="${order.paytypecode==0 && order.payStatus==2}">订单支付成功</c:if>
+								<c:if test="${order.paytypecode==1}">订单提交成功</c:if>
+							</c:when>
+							<c:when test="${payResult==0}">
+							   订单支付失败
+							</c:when>
+						</c:choose>
+					</span>
+				</div>
+				<div class="payResult_content bg-color-white">
+					<div class="top">
+						<c:choose>
+							<c:when test="${payResult==1}">
+								<img src="${ctx}images/tips_success.jpg" class="pay-img" />
+							</c:when>
+							<c:when test="${payResult==0}">
+								<img src="${ctx}images/tips_failure.jpg" class="pay-img" />
+							</c:when>
+						</c:choose>
+						<div class="fs34 font-weight-b margin-top10">
+							<c:choose>
+								<c:when test="${payResult==1}">
+									<c:if test="${order.paytypecode==0 && order.payStatus==2}">支付成功</c:if>
+									<c:if test="${order.paytypecode==1}">提交成功</c:if>
+								</c:when>
+								<c:when test="${payResult==0}">
+							             支付失败
+							</c:when>
+							</c:choose>
+						</div>
+					</div>
+					<ul class="order-msg-ul"
+						<c:if test="${payResult==0}">style="display:none;"</c:if>>
+						<li class="flex-box"><span
+							class="flex-box-grow2  fs26 fc-999">订单号</span><i
+							class="fs26 fc-999">${order.number}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">支付方式</span><i
+							class="fs26 fc-999">${order.paymethodname}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">收件人</span><i
+							class="fs26 fc-999">${order.consigneeName}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">联系电话</span><i
+							class="fs26 fc-999">${order.consigneeMobile}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">收货地址</span><i
+							class="fs26 fc-999">${order.consigneeAddress}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">送货时间</span><i
+							class="fs26 fc-999">${order.shipTime}</i></li>
+						<li class="flex-box"><span class="flex-box-grow2 fs26 fc-999">订单金额</span><i
+							class="fs26 fc-999">￥<fmt:formatNumber value="${order.total}"
+									type="currency" pattern="0.00" /></i></li>
+					</ul>
+					<div class="order-oper-btn border-t flex-box">
+						<span class="fc-red fs28 shop-again-btn flex-box-grow2">继 续
+							购 物</span> <span class="fc-green fs28 order-detail-btn flex-box-grow2"
+							onclick="orderdetail(this);" data-id="${order.id}">订单详情</span>
+					</div>
+				</div>
+			</c:when>
+		</c:choose>
+	</div>
+</body>
+
+
+</html>

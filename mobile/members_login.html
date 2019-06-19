@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员登录</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<link rel="stylesheet" type="text/css" href="styles/login.css">
+<script type='text/javascript' src='js/jquery-2.1.4.js'
+	charset='utf-8'></script>
+<script type='text/javascript' src='js/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src="js/common.js" charset="utf-8"></script>
+<script type='text/javascript' src='js/login.js' charset='utf-8'></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header flex-box bg-color-f3">
+			<img src="images/back.png" onclick="back()" /><span
+				class="fs28 flex-box-grow2">用户登录</span>
+		</div>
+		<div class="content">
+			<form class="form" method="post" name="loginForm" id="loginForm"
+				action="">
+				<input type="hidden" name="returnUrl" value="" />
+				<input type="hidden" name="captchaToken" value=""/>
+				<ul>
+					<li class="border-b flex-box"><img
+						src="images/login_icon_username.png" /><input type="text"
+						name="account" placeholder="用户名/手机号" class="fs24 fc-999"
+						value=""></li>
+					<li class="border-b flex-box"><img
+						src="images/login_icon_password.png" /><input
+						type="password" name="password" placeholder="密码"
+						class="fs24 fc-999" /></li>
+						<li class="border-b flex-box verifycode"><input type="text"
+							name="verifycode" placeholder="验证码" class="fs24 fc-999" /><img
+							style="width:80px;height:30px;" id="verifycode"
+							src="" /></li>
+				</ul>
+				<p class="p">
+					<a href="members_register.html" class="register fs24 fc-999">还没有账号?免费注册</a>
+				</p>
+				<p class="p">
+					<input type="button"
+						class="greenBtn fs26 fc-white border-radius-60 login-save-btn"
+						value="登录" />
+				</p>
+			</form>
+			<div class="cooperation" style="display: none">
+				<div class="cooperation-tit fs24">合作网站账号登录</div>
+				<div class="cooperation-login">
+					<ul>
+						<li class="item" id="cooperationWX"><img
+							src="images/wechat.png"><span
+							class="icon-text linkConColor fs26">微信</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
